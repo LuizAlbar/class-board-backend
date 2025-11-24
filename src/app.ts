@@ -24,6 +24,20 @@ export async function buildApp() {
 		credentials: true,
 	});
 
+	// #----- Rate Limit -----#
+
+	await app.register(import("@fastify/rate-limit"), {
+		max: 100,
+		timeWindow: "1 minute",
+		allowList: ["127.0.0.1"],
+		addHeaders: {
+			"x-ratelimit-limit": true,
+			"x-ratelimit-remaining": true,
+			"x-ratelimit-reset": true,
+			"retry-after": true,
+		},
+	});
+
 	// #----- Swagger Config -----#
 
 	app.setValidatorCompiler(validatorCompiler);
