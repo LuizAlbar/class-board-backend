@@ -1,4 +1,5 @@
 import { fastifyCors } from "@fastify/cors";
+import helmet from "@fastify/helmet";
 import { fastifySwagger } from "@fastify/swagger";
 import { fastifySwaggerUi } from "@fastify/swagger-ui";
 import ScalarApiReference from "@scalar/fastify-api-reference";
@@ -37,6 +38,10 @@ export async function buildApp() {
 			"retry-after": true,
 		},
 	});
+
+	// #----- Helmet -----#
+
+	app.register(helmet, {});
 
 	// #----- Swagger Config -----#
 
