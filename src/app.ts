@@ -1,3 +1,4 @@
+import fastifyCookie from "@fastify/cookie";
 import { fastifyCors } from "@fastify/cors";
 import helmet from "@fastify/helmet";
 import fastifyJWT from "@fastify/jwt";
@@ -23,6 +24,16 @@ export async function buildApp() {
 	// #----- JWT -----#
 
 	app.register(fastifyJWT, {
+		secret: env.JWT_SECRET,
+		cookie: {
+			cookieName: "token",
+			signed: false,
+		},
+	});
+
+	// #----- Cookie -----#
+
+	app.register(fastifyCookie, {
 		secret: env.JWT_SECRET,
 	});
 
