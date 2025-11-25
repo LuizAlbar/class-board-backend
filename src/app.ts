@@ -1,5 +1,6 @@
 import { fastifyCors } from "@fastify/cors";
 import helmet from "@fastify/helmet";
+import fastifyJWT from "@fastify/jwt";
 import { fastifySwagger } from "@fastify/swagger";
 import { fastifySwaggerUi } from "@fastify/swagger-ui";
 import ScalarApiReference from "@scalar/fastify-api-reference";
@@ -10,12 +11,20 @@ import {
 	validatorCompiler,
 	type ZodTypeProvider,
 } from "fastify-type-provider-zod";
+import { env } from "./shared/env/index.ts";
 
 export async function buildApp() {
 	// #----- App -----#
+
 	const app = fastify({
 		logger: true,
 	}).withTypeProvider<ZodTypeProvider>();
+
+	// #----- JWT -----#
+
+	app.register(fastifyJWT, {
+		secret: env.JWT_SECRET,
+	});
 
 	// #----- CORS -----#
 
