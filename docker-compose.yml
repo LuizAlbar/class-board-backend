@@ -1,4 +1,17 @@
 services:
+  class-board-api:
+      build: 
+        context: .
+        dockerfile: Dockerfile.dev
+      ports:
+        - 3000:3000
+      volumes:
+        - .:/app
+        - /app/node_modules
+      depends_on:
+        - class-board-pg
+      stdin_open: true
+      tty: true
   class-board-pg:
     image: bitnami/postgresql
     ports:
@@ -7,4 +20,6 @@ services:
       - POSTGRESQL_USERNAME=docker
       - POSTGRESQL_PASSWORD=docker
       - POSTGRESQL_DATABASE=classboard_db
+
+    
 
