@@ -39,7 +39,7 @@ export class InMemoryUsersRepository implements UsersRepository {
 
 		return user;
 	}
-	async update(data: User): Promise<User> {
+	async update(data: User) {
 		const index = this.items.findIndex((u) => u.id === data.id);
 
 		if (index === -1) {
@@ -49,7 +49,7 @@ export class InMemoryUsersRepository implements UsersRepository {
 
 		return data;
 	}
-	async delete(id: string): Promise<void> {
+	async delete(id: string) {
 		const index = this.items.findIndex((u) => u.id === id);
 
 		if (index === -1) {
