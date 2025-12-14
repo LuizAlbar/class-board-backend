@@ -19,7 +19,10 @@
 			"suspicious": {
 				"noExplicitAny": "off"
 			},
-			"recommended": true
+			"recommended": true,
+			"complexity": {
+				"noStaticOnlyClass": "off"
+			}
 		}
 	},
 	"javascript": {
