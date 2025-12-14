@@ -19,7 +19,7 @@ export class RegisterUseCase {
 
 		const hashedPassword = await this.hashService.hash(dto.password);
 
-		const user = new User({
+		const newUser = new User({
 			id: randomUUID(),
 			name: dto.name,
 			email: dto.email,
@@ -29,6 +29,8 @@ export class RegisterUseCase {
 			updated_at: new Date(),
 		});
 
-		return this.usersRepository.create(user);
+		const user = await this.usersRepository.create(newUser);
+
+		return { user };
 	}
 }
