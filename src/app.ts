@@ -12,6 +12,7 @@ import {
 	validatorCompiler,
 	type ZodTypeProvider,
 } from "fastify-type-provider-zod";
+import { userRoutes } from "./modules/auth/infrastructure/web/routes.ts";
 import { env } from "./shared/env/index.ts";
 
 export async function buildApp() {
@@ -91,6 +92,10 @@ export async function buildApp() {
 	app.register(ScalarApiReference, {
 		routePrefix: "/scalar/docs",
 	});
+
+	// #----- Routes -----#
+
+	app.register(userRoutes);
 
 	return app;
 }
