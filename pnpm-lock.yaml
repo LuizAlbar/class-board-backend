@@ -32,9 +32,6 @@ importers:
       '@prisma/client':
         specifier: 6.19.1
         version: 6.19.1(prisma@6.19.1(typescript@5.9.3))(typescript@5.9.3)
-      '@scalar/fastify-api-reference':
-        specifier: 1.40.5
-        version: 1.40.5
       bcryptjs:
         specifier: 3.0.3
         version: 3.0.3
@@ -663,38 +660,6 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@scalar/core@0.3.26':
-    resolution: {integrity: sha512-CTwhU0zteyhFvlGbiErUC/nt7o4VMraXC4E52x2Cz+s/rgGrmS00pTYtnjO3NVQXXqjScq8BqMTqBZrHQEJhWw==}
-    engines: {node: '>=20'}
-
-  '@scalar/fastify-api-reference@1.40.5':
-    resolution: {integrity: sha512-qs8xG2TBY+hn7CZ4/lBftkvzZ5Fo6hyOMfd/7MXkUB98Ng8HIjNNT9E6dxO8lkJzOj4XBN0lJxOD3mG47KOD3g==}
-    engines: {node: '>=20'}
-
-  '@scalar/helpers@0.2.2':
-    resolution: {integrity: sha512-oGef7vvtz1KgCy34IaVcbMV99dEXjcGETJtwogT4MU8R7gnYDg6qSTh5200hWAGVO+Ai/6h9rlGVfgeHTzelfg==}
-    engines: {node: '>=20'}
-
-  '@scalar/json-magic@0.8.6':
-    resolution: {integrity: sha512-alxGHRJXgaefvfv9IISxb11D2y9iVyN+2/1dLBg3jJildkCJCP6yaT5ESC9qB+YOZeuuxIF32gmk+CLwx38YnQ==}
-    engines: {node: '>=20'}
-
-  '@scalar/openapi-parser@0.23.7':
-    resolution: {integrity: sha512-OEuP+RM74YT7S11K9yHwuPq7bUnj+8ywCV5few73FY1szr90y39yGreLPcAmZ+SeC0HPhP4ZGKIhBCeSmuSL6Q==}
-    engines: {node: '>=20'}
-
-  '@scalar/openapi-types@0.5.3':
-    resolution: {integrity: sha512-m4n/Su3K01d15dmdWO1LlqecdSPKuNjuokrJLdiQ485kW/hRHbXW1QP6tJL75myhw/XhX5YhYAR+jrwnGjXiMw==}
-    engines: {node: '>=20'}
-
-  '@scalar/openapi-upgrader@0.1.6':
-    resolution: {integrity: sha512-XdrNZUr0ASLfR89OS2zP6enbq9f7UGQQxov+a3WF1Wz9DClniAL2ChJ2fbGOrqL5F2kjbV6Fw/iO3bsBTMyLZA==}
-    engines: {node: '>=20'}
-
-  '@scalar/types@0.5.2':
-    resolution: {integrity: sha512-F5wyb/B/Mu56PpNqhgSfuKwiwVnmhNhzTOo+k5b++HvYhjwAnqnw8BzbDzwXhhn172IPw8kSkupA/vphw61IRA==}
-    engines: {node: '>=20'}
-
   '@standard-schema/spec@1.0.0':
     resolution: {integrity: sha512-m2bOd0f2RT9k8QJx1JN85cZYyH1RqFBdlwtkSlf4tBDYLCiiZnv1fIIwacK6cqwXavOydf0NPToMQgpKq+dVlA==}
 
@@ -741,14 +706,6 @@ packages:
 
   abstract-logging@2.0.1:
     resolution: {integrity: sha512-2BjRTZxTPvheOvGbBslFSYOUkr+SjPtOnrLP33f+VIWLzezQpZcqVg7ja3L4dBXmzzgwT+a029jRx5PCi3JuiA==}
-
-  ajv-draft-04@1.0.0:
-    resolution: {integrity: sha512-mv00Te6nmYbRp5DCwclxtt7yV/joXJPGS7nM+97GdxvuttCOfgI3K4U25zboyeX0O+myI8ERluxQe5wljMmVIw==}
-    peerDependencies:
-      ajv: ^8.5.0
-    peerDependenciesMeta:
-      ajv:
-        optional: true
 
   ajv-formats@3.0.1:
     resolution: {integrity: sha512-8iUql50EUR+uUcdRQ3HDqa6EVyo3docL8g5WJ3FNcWmu62IbkGUue/pEyLBW8VGKKucTPgqeks4fIU1DA4yowQ==}
@@ -1004,9 +961,6 @@ packages:
     resolution: {integrity: sha512-KH6p+Z8AKPXnmA7+Iz2Lh8ARCMr+8WNPVludm1LGkZoD2MjY6LVnRMtTKhkdzI+jr0RzQWXKzKyBJm1zoHEL4Q==}
     engines: {node: '>=0.10.0'}
 
-  fastify-plugin@4.5.1:
-    resolution: {integrity: sha512-stRHYGeuqpEZTL1Ef0Ovr2ltazUT9g844X5z/zEBFLG8RYlpDiOCIG+ATvYEp+/zmc7sN29mcIMp8gvYplYPIQ==}
-
   fastify-plugin@5.1.0:
     resolution: {integrity: sha512-FAIDA8eovSt5qcDgcBvDuX/v0Cjz0ohGhENZ/wpc3y+oZCY2afZ9Baqql3g/lC+OHRnciQol4ww7tuthOb9idw==}
 
@@ -1078,9 +1032,6 @@ packages:
     resolution: {integrity: sha512-L5bGsVkxJbJgdnwyuheIunkGatUF/zssUoxxjACCseZYAVbaqdh9Tsmmlkl8vYan09H7sbvKt4pS8GqKLBrEzA==}
     hasBin: true
 
-  github-slugger@2.0.0:
-    resolution: {integrity: sha512-IaOQ9puYtjrkq7Y0Ygl9KDZnrf/aiUJYUpVf89y8kyaxbRG7Y1SrX/jaumrv81vc61+kiMempujsM3Yw7w5qcw==}
-
   glob@11.1.0:
     resolution: {integrity: sha512-vuNwKSaKiqm7g0THUBu2x7ckSs3XJLXE+2ssL7/MfTGPLLcrJQ/4Uq1CjPTtO5cCIiRxqvN6Twy1qOwhL0Xjcw==}
     engines: {node: 20 || >=22}
@@ -1149,14 +1100,6 @@ packages:
   json-schema-traverse@1.0.0:
     resolution: {integrity: sha512-NM8/P9n3XjXhIZn1lLhkFaACTOURQXjWhV4BA/RnOv8xvgqtqpAX9IO4mRQxSx1Rlo4tqzeqb0sOlruaOy3dug==}
 
-  jsonpointer@5.0.1:
-    resolution: {integrity: sha512-p/nXbhSEcu3pZRdkW1OfJhpsVtW1gd4Wa1fnQc9YLiTfAjn0312eMKimbdIQzuZl9aa9xUGaRlP9T/CJE/ditQ==}
-    engines: {node: '>=0.10.0'}
-
-  leven@4.1.0:
-    resolution: {integrity: sha512-KZ9W9nWDT7rF7Dazg8xyLHGLrmpgq2nVNFUckhqdW3szVP6YhCpp/RAnpmVExA9JvrMynjwSLVrEj3AepHR6ew==}
-    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
-
   light-my-request@6.6.0:
     resolution: {integrity: sha512-CHYbu8RtboSIoVsHZ6Ye4cj4Aw/yg2oAFimlF7mNvfDV192LR7nDiKtSIfCuLT7KokPSTn/9kfVLm5OGN0A28A==}
 
@@ -1213,11 +1156,6 @@ packages:
   nanoid@3.3.11:
     resolution: {integrity: sha512-N8SpfPUnUp1bK+PMYW8qSWdl9U+wwNWI4QKxOYDy9JAro3WMX7p2OeVRF9v+347pnakNevPmiHhNmZ2HbFA76w==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
-    hasBin: true
-
-  nanoid@5.1.5:
-    resolution: {integrity: sha512-Ir/+ZpE9fDsNH0hQ3C68uyThDXzYcim2EqcZ8zn8Chtt1iylPT9xXJB0kPCnqzgcEGikO9RxSrh63MsmVCU7Fw==}
-    engines: {node: ^18 || >=20}
     hasBin: true
 
   node-fetch-native@1.6.7:
@@ -1458,10 +1396,6 @@ packages:
     resolution: {integrity: sha512-tjLPs7dVyqgItVFirHYqe2T+MfWc2VOBQ8QFKKbWTA3PU7liZR8zoSpAi/C1k1ilm9RsXIKYf197oap9wXGVYg==}
     engines: {node: '>=14.18.0'}
 
-  tagged-tag@1.0.0:
-    resolution: {integrity: sha512-yEFYrVhod+hdNyx7g5Bnkkb0G6si8HJurOoOEgC8B/O0uXLHlaey/65KRv6cuWBNhBgHKAROVpc7QyYqE5gFng==}
-    engines: {node: '>=20'}
-
   thread-stream@3.1.0:
     resolution: {integrity: sha512-OqyPZ9u96VohAyMfJykzmivOrY2wfMSf3C5TtFJVgN+Hm6aj+voFhlK+kZEIv2FBh1X6Xp3DlnCOfEQ3B2J86A==}
 
@@ -1502,10 +1436,6 @@ packages:
     resolution: {integrity: sha512-5C1sg4USs1lfG0GFb2RLXsdpXqBSEhAaA/0kPL01wxzpMqLILNxIxIOKiILz+cdg/pLnOUxFYOR5yhHU666wbw==}
     engines: {node: '>=18.0.0'}
     hasBin: true
-
-  type-fest@5.0.0:
-    resolution: {integrity: sha512-GeJop7+u7BYlQ6yQCAY1nBQiRSHR+6OdCEtd8Bwp9a3NK3+fWAVjOaPKJDteB9f6cIJ0wt4IfnScjLG450EpXA==}
-    engines: {node: '>=20'}
 
   typescript@5.9.3:
     resolution: {integrity: sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==}
@@ -2040,51 +1970,6 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.53.3':
     optional: true
 
-  '@scalar/core@0.3.26':
-    dependencies:
-      '@scalar/types': 0.5.2
-
-  '@scalar/fastify-api-reference@1.40.5':
-    dependencies:
-      '@scalar/core': 0.3.26
-      '@scalar/openapi-parser': 0.23.7
-      '@scalar/openapi-types': 0.5.3
-      fastify-plugin: 4.5.1
-      github-slugger: 2.0.0
-
-  '@scalar/helpers@0.2.2': {}
-
-  '@scalar/json-magic@0.8.6':
-    dependencies:
-      '@scalar/helpers': 0.2.2
-      yaml: 2.8.2
-
-  '@scalar/openapi-parser@0.23.7':
-    dependencies:
-      '@scalar/json-magic': 0.8.6
-      '@scalar/openapi-types': 0.5.3
-      '@scalar/openapi-upgrader': 0.1.6
-      ajv: 8.17.1
-      ajv-draft-04: 1.0.0(ajv@8.17.1)
-      ajv-formats: 3.0.1(ajv@8.17.1)
-      jsonpointer: 5.0.1
-      leven: 4.1.0
-      yaml: 2.8.2
-
-  '@scalar/openapi-types@0.5.3':
-    dependencies:
-      zod: 4.1.13
-
-  '@scalar/openapi-upgrader@0.1.6':
-    dependencies:
-      '@scalar/openapi-types': 0.5.3
-
-  '@scalar/types@0.5.2':
-    dependencies:
-      nanoid: 5.1.5
-      type-fest: 5.0.0
-      zod: 4.1.13
-
   '@standard-schema/spec@1.0.0': {}
 
   '@types/chai@5.2.3':
@@ -2140,10 +2025,6 @@ snapshots:
       tinyrainbow: 3.0.3
 
   abstract-logging@2.0.1: {}
-
-  ajv-draft-04@1.0.0(ajv@8.17.1):
-    optionalDependencies:
-      ajv: 8.17.1
 
   ajv-formats@3.0.1(ajv@8.17.1):
     optionalDependencies:
@@ -2424,8 +2305,6 @@ snapshots:
     dependencies:
       reusify: 1.1.0
 
-  fastify-plugin@4.5.1: {}
-
   fastify-plugin@5.1.0: {}
 
   fastify-type-provider-zod@6.1.0(@fastify/swagger@9.6.1)(fastify@5.6.2)(openapi-types@12.1.3)(zod@4.1.13):
@@ -2533,8 +2412,6 @@ snapshots:
       nypm: 0.6.2
       pathe: 2.0.3
 
-  github-slugger@2.0.0: {}
-
   glob@11.1.0:
     dependencies:
       foreground-child: 3.3.1
@@ -2598,10 +2475,6 @@ snapshots:
 
   json-schema-traverse@1.0.0: {}
 
-  jsonpointer@5.0.1: {}
-
-  leven@4.1.0: {}
-
   light-my-request@6.6.0:
     dependencies:
       cookie: 1.1.1
@@ -2643,8 +2516,6 @@ snapshots:
   ms@2.1.3: {}
 
   nanoid@3.3.11: {}
-
-  nanoid@5.1.5: {}
 
   node-fetch-native@1.6.7: {}
 
@@ -2908,8 +2779,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  tagged-tag@1.0.0: {}
-
   thread-stream@3.1.0:
     dependencies:
       real-require: 0.2.0
@@ -2939,10 +2808,6 @@ snapshots:
       get-tsconfig: 4.13.0
     optionalDependencies:
       fsevents: 2.3.3
-
-  type-fest@5.0.0:
-    dependencies:
-      tagged-tag: 1.0.0
 
   typescript@5.9.3: {}
 

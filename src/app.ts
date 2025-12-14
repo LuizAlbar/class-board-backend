@@ -4,7 +4,6 @@ import helmet from "@fastify/helmet";
 import fastifyJWT from "@fastify/jwt";
 import { fastifySwagger } from "@fastify/swagger";
 import { fastifySwaggerUi } from "@fastify/swagger-ui";
-import ScalarApiReference from "@scalar/fastify-api-reference";
 import fastify from "fastify";
 import {
 	jsonSchemaTransform,
@@ -87,10 +86,6 @@ export async function buildApp() {
 
 	app.register(fastifySwaggerUi, {
 		routePrefix: "/docs",
-	});
-
-	app.register(ScalarApiReference, {
-		routePrefix: "/scalar/docs",
 	});
 
 	// #----- Routes -----#
