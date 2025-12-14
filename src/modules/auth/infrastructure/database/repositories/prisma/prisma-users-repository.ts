@@ -1,8 +1,8 @@
 import type { CreateUserDTO } from "@/modules/auth/application/dtos/user-dtos.ts";
 import { PrismaUserMapper } from "@/modules/auth/application/mappers/prisma-user-mapper.ts";
 import { prisma } from "@/shared/database/prisma.ts";
-import type { User } from "../../entities/User.ts";
-import type { UsersRepository } from "../users-repository.ts";
+import type { User } from "@/modules/auth/domain/entities/User.ts";
+import type { UsersRepository } from "@/modules/auth/domain/repositories/users-repository.ts";
 
 export class PrismaUserRepository implements UsersRepository {
 	async findById(id: string) {

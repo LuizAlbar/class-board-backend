@@ -1,5 +1,6 @@
 import { randomUUID } from "node:crypto";
 import { User } from "../../domain/entities/User.ts";
+import { UserAlreadyExists } from "../../domain/errors/user-already-exists-error.ts";
 import type { UsersRepository } from "../../domain/repositories/users-repository.ts";
 import type { HashService } from "../../domain/services/HashService.ts";
 import type { CreateUserDTO } from "../dtos/user-dtos.ts";
@@ -14,7 +15,7 @@ export class RegisterUseCase {
 		const userExists = await this.usersRepository.findByEmail(dto.email);
 
 		if (userExists) {
-			throw new Error("User already exists");
+			throw new UserAlreadyExists();
 		}
 
 		const hashedPassword = await this.hashService.hash(dto.password);

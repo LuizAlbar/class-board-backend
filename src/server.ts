@@ -13,9 +13,7 @@ async function startServer() {
 			})
 			.then(() => {
 				console.log(`🚀 Server running at http://localhost:${PORT}`);
-				console.log(
-					`📚 Docs available at http://localhost:${PORT}/docs and http://localhost:${PORT}/scalar/docs`,
-				);
+				console.log(`📚 Docs available at http://localhost:${PORT}/docs`);
 			});
 	} catch (error) {
 		app.log.error(error);
