@@ -12,4 +12,12 @@ export const createUserSchema = z.object({
 	role: z.enum(UserRole),
 });
 
+export const authenticateUserSchema = z.object({
+	email: z.email(),
+	password: z
+		.string()
+		.max(32, { message: "Password cannot exceed 32 characters" })
+		.refine((s) => !s.includes(" "), "Password cannot contain spaces"),
+});
+
 export type CreateUserInput = z.infer<typeof createUserSchema>;

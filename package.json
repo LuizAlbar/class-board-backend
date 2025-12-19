@@ -5,7 +5,7 @@
 	"type": "module",
 	"main": "src/server.ts",
 	"scripts": {
-		"dev": "tsx src/server.ts",
+		"dev": "tsx watch src/server.ts",
 		"lint-format": "biome check --write",
 		"prisma:generate": "prisma generate",
 		"prisma:migrate": "prisma migrate dev",

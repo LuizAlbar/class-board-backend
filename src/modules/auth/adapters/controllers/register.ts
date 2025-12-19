@@ -1,9 +1,9 @@
 import type { FastifyReply, FastifyRequest } from "fastify";
+import { FastifyResponsePresenter } from "@/shared/utils/response-handler/fastify-response-presenter.ts";
 import { UserMapper } from "../../application/mappers/user-mapper.ts";
 import { createUserSchema } from "../../application/validators/user-validators.ts";
 import { UserAlreadyExists } from "../../domain/errors/user-already-exists-error.ts";
 import { makeRegisterUseCase } from "../../infrastructure/factories/make-register-use-case.ts";
-import { FastifyResponsePresenter } from "../http/fastify-response-presenter.ts";
 
 export async function register(request: FastifyRequest, reply: FastifyReply) {
 	const { name, email, password, role } = createUserSchema.parse(request.body);

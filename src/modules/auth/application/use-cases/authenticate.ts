@@ -1,0 +1,31 @@
+import { InvalidCredentialError } from "../../domain/errors/invalid-credential-error.ts";
+import type { UsersRepository } from "../../domain/repositories/users-repository.ts";
+import type { HashService } from "../../domain/services/HashService.ts";
+import type { AuthenticateUserDTO, UserDto } from "../dtos/user-dtos.ts";
+import { UserMapper } from "../mappers/user-mapper.ts";
+
+export class AuthenticateUseCase {
+	constructor(
+		private usersRepository: UsersRepository,
+		private hashService: HashService,
+	) {}
+
+	async execute({ email, password }: AuthenticateUserDTO): Promise<UserDto> {
+		const user = await this.usersRepository.findByEmail(email);
+
+		if (!user) {
+			throw new InvalidCredentialError();
+		}
+
+		const doesPasswordMatch = await this.hashService.compare(
+			password,
+			user.password,
+		);
+
+		if (!doesPasswordMatch) {
+			throw new InvalidCredentialError();
+		}
+
+		return UserMapper.toDTO(user);
+	}
+}
