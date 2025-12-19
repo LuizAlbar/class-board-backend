@@ -35,6 +35,14 @@ describe("Authenticate Use Case", () => {
 		});
 
 		expect(user.id).toEqual(expect.any(String));
-		console.log(user);
+	});
+
+	it("should not be able to authenticate using a non-existent email", async () => {
+		await usersRepository.create(userData);
+		await expect(() =>
+			sut.execute({ email: "non-existent@email.com", password: "12345678" }),
+		).rejects.toBeInstanceOf(InvalidCredentialError);
+
+		console.log(usersRepository.findByEmail("john@email"));
 	});
 });
