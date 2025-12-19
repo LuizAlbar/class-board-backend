@@ -1,6 +1,7 @@
 import { randomUUID } from "node:crypto";
 import { User } from "../../domain/entities/User.ts";
 import { UserAlreadyExists } from "../../domain/errors/user-already-exists-error.ts";
+import { WeakPasswordError } from "../../domain/errors/weak-password-error.ts";
 import type { UsersRepository } from "../../domain/repositories/users-repository.ts";
 import type { HashService } from "../../domain/services/HashService.ts";
 import type { CreateUserDTO } from "../dtos/user-dtos.ts";
@@ -30,6 +31,9 @@ export class RegisterUseCase {
 			updated_at: new Date(),
 		});
 
+		if (dto.password.length < 8) {
+			throw new WeakPasswordError();
+		}
 		const user = await this.usersRepository.create(newUser);
 
 		return { user };

@@ -18,6 +18,9 @@ export class User {
 	private props: UserProps;
 
 	constructor(props: UserProps) {
+		if (!props.password || props.password.length < 8) {
+			throw new Error();
+		}
 		this.props = props;
 	}
 

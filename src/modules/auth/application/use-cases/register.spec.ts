@@ -1,6 +1,7 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import { UserRole } from "../../domain/entities/User.ts";
 import { UserAlreadyExists } from "../../domain/errors/user-already-exists-error.ts";
+import { WeakPasswordError } from "../../domain/errors/weak-password-error.ts";
 import { InMemoryUsersRepository } from "../../domain/repositories/in-memory/in-memory-users-repository.ts";
 import { BcryptHashService } from "../../infrastructure/config/bcrypt.ts";
 import { RegisterUseCase } from "./register.ts";
@@ -42,5 +43,16 @@ describe("Register Use Case", () => {
 		);
 
 		expect(isPasswordCorrectlyHashed).toBe(true);
+	});
+
+	it("should not be able to register with a password shorter than 8 characters", async () => {
+		await expect(() =>
+			sut.execute({
+				name: "John",
+				email: "john2@email",
+				password: "123456",
+				role: UserRole.ESTUDANTE,
+			}),
+		).rejects.toBeInstanceOf(WeakPasswordError);
 	});
 });
