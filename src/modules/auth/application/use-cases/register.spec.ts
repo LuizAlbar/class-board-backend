@@ -25,4 +25,12 @@ describe("Register Use Case", () => {
 		const { user } = await sut.execute(userData);
 		expect(user.id).toEqual(expect.any(String));
 	});
+
+	it("should not be able to register using an existing email", async () => {
+		await sut.execute(userData);
+
+		await expect(() => sut.execute(userData)).rejects.toBeInstanceOf(
+			UserAlreadyExists,
+		);
+	});
 });
