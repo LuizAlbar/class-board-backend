@@ -42,7 +42,12 @@ describe("Authenticate Use Case", () => {
 		await expect(() =>
 			sut.execute({ email: "non-existent@email.com", password: "12345678" }),
 		).rejects.toBeInstanceOf(InvalidCredentialError);
+	});
 
-		console.log(usersRepository.findByEmail("john@email"));
+	it("should not be able to authenticate using invalid credentials(password)", async () => {
+		await usersRepository.create(userData);
+		await expect(() =>
+			sut.execute({ email: "john@email", password: "wrong_password" }),
+		).rejects.toBeInstanceOf(InvalidCredentialError);
 	});
 });
