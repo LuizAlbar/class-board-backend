@@ -13,6 +13,7 @@ import {
 } from "fastify-type-provider-zod";
 import { userRoutes } from "./modules/auth/infrastructure/web/routes.ts";
 import { env } from "./shared/env/index.ts";
+import z, { ZodError } from "zod";
 
 export async function buildApp() {
 	// #----- App -----#
@@ -20,6 +21,19 @@ export async function buildApp() {
 	const app = fastify({
 		logger: true,
 	}).withTypeProvider<ZodTypeProvider>();
+
+	// #----- ErrorHandler -----#
+
+	app.setErrorHandler((error, _request, reply) => {
+		if (error instanceof ZodError) {
+			return reply.status(400).send(
+				{message: "Invalid Data Input",
+				issues: z.treeifyError(error)
+			});
+		}
+
+		return reply.status(500).send({ message: "Internal server error" });
+	})
 
 	// #----- JWT -----#
 
