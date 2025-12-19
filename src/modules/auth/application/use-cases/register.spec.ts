@@ -33,4 +33,14 @@ describe("Register Use Case", () => {
 			UserAlreadyExists,
 		);
 	});
+
+	it("should hash user's password correctly", async () => {
+		const { user } = await sut.execute(userData);
+		const isPasswordCorrectlyHashed = await bcryptService.compare(
+			"12345678",
+			user.password,
+		);
+
+		expect(isPasswordCorrectlyHashed).toBe(true);
+	});
 });
