@@ -2,11 +2,13 @@ import { randomUUID } from "node:crypto";
 import { beforeEach, describe, expect, it } from "vitest";
 import { User, UserRole } from "../../domain/entities/User.ts";
 import { InvalidCredentialError } from "../../domain/errors/invalid-credential-error.ts";
+import { InMemoryTokensRepository } from "../../domain/repositories/in-memory/in-memory-tokens-repository.ts";
 import { InMemoryUsersRepository } from "../../domain/repositories/in-memory/in-memory-users-repository.ts";
 import { BcryptHashService } from "../../infrastructure/config/bcrypt.ts";
 import { AuthenticateUseCase } from "./authenticate.ts";
 
 let usersRepository: InMemoryUsersRepository;
+let tokensRepository: InMemoryTokensRepository;
 const bcryptService = new BcryptHashService();
 let sut: AuthenticateUseCase;
 
@@ -23,7 +25,12 @@ const userData = new User({
 describe("Authenticate Use Case", () => {
 	beforeEach(() => {
 		usersRepository = new InMemoryUsersRepository();
-		sut = new AuthenticateUseCase(usersRepository, bcryptService);
+		tokensRepository = new InMemoryTokensRepository();
+		sut = new AuthenticateUseCase(
+			usersRepository,
+			tokensRepository,
+			bcryptService,
+		);
 	});
 
 	it("should be able to authenticate", async () => {
@@ -49,5 +56,15 @@ describe("Authenticate Use Case", () => {
 		await expect(() =>
 			sut.execute({ email: "john@email", password: "wrong_password" }),
 		).rejects.toBeInstanceOf(InvalidCredentialError);
+	});
+
+	it("should be able to create a refresh token", async () => {
+		const user = await usersRepository.create(userData);
+		await sut.execute({ email: "john@email", password: "12345678" });
+
+		const token = await tokensRepository.findById(user.id);
+
+		expect(token?.userId).toEqual(user.id);
+		console.log(token);
 	});
 });

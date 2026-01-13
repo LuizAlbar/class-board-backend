@@ -1,5 +1,4 @@
-import { randomUUID } from "node:crypto";
-import { User, UserRole } from "../../entities/User.ts";
+import type { User } from "../../entities/User.ts";
 import type { UsersRepository } from "../users-repository.ts";
 
 export class InMemoryUsersRepository implements UsersRepository {
@@ -24,17 +23,7 @@ export class InMemoryUsersRepository implements UsersRepository {
 
 		return user;
 	}
-	async create(data: User) {
-		const user = new User({
-			id: randomUUID(),
-			name: data.name,
-			email: data.email,
-			password: data.password,
-			created_at: new Date(),
-			updated_at: new Date(),
-			role: UserRole.ESTUDANTE,
-		});
-
+	async create(user: User) {
 		this.items.push(user);
 
 		return user;

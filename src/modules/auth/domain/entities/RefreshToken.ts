@@ -1,8 +1,8 @@
-interface RefreshTokenProps {
-	readonly id: string;
-	readonly token: string;
-	readonly userId: string;
-	readonly expiresAt: Date;
+export interface RefreshTokenProps {
+	id: string;
+	token: string;
+	userId: string;
+	expiresAt: Date;
 }
 
 export class RefreshToken {
@@ -13,5 +13,20 @@ export class RefreshToken {
 
 	isExpired() {
 		return this.props.expiresAt < new Date();
+	}
+
+	get id() {
+		return this.props.id;
+	}
+
+	get token() {
+		return this.props.token;
+	}
+	get userId() {
+		return this.props.userId;
+	}
+
+	get expiresAt() {
+		return this.props.expiresAt;
 	}
 }
