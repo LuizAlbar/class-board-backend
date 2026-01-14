@@ -28,6 +28,7 @@ export class AuthenticateUseCase {
 			throw new InvalidCredentialError();
 		}
 
+		await this.refreshTokensRepository.deleteByUserId(user.id);
 		await this.refreshTokensRepository.generate(user.id);
 
 		return UserMapper.toDTO(user);

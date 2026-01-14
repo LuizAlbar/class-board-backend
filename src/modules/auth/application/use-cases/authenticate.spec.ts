@@ -65,6 +65,17 @@ describe("Authenticate Use Case", () => {
 		const token = await tokensRepository.findById(user.id);
 
 		expect(token?.userId).toEqual(user.id);
-		console.log(token);
+	});
+
+	it("should not be possible for an user to have more than one refresh token", async () => {
+		const user = await usersRepository.create(userData);
+		await sut.execute({ email: "john@email", password: "12345678" });
+		await sut.execute({ email: "john@email", password: "12345678" });
+
+		const tokensList = tokensRepository.items.filter(
+			(item) => item.userId === user.id,
+		);
+
+		expect(tokensList).toHaveLength(1);
 	});
 });

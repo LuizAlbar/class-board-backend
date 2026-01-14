@@ -30,7 +30,7 @@ export class InMemoryTokensRepository implements RefreshTokenRepository {
 
 		return token;
 	}
-	async deleteByUserId(_userId: string): Promise<void> {
-		throw new Error("Method not implemented.");
+	async deleteByUserId(userId: string) {
+		this.items = this.items.filter((item) => item.userId !== userId);
 	}
 }
