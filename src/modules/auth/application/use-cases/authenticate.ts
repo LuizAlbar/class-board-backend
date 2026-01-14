@@ -1,7 +1,9 @@
 import { InvalidCredentialError } from "../../domain/errors/invalid-credential-error.ts";
 import type { RefreshTokenRepository } from "../../domain/repositories/refresh-token-repository.ts";
 import type { UsersRepository } from "../../domain/repositories/users-repository.ts";
+import { AccessTokenProviderService } from "../../domain/services/AccessTokenProviderService.ts";
 import type { HashService } from "../../domain/services/HashService.ts";
+import { AuthenticateResponseDTO } from "../dtos/authenticate.ts";
 import type { AuthenticateUserDTO, UserDto } from "../dtos/user-dtos.ts";
 import { UserMapper } from "../mappers/user-mapper.ts";
 
@@ -9,10 +11,11 @@ export class AuthenticateUseCase {
 	constructor(
 		private usersRepository: UsersRepository,
 		private refreshTokensRepository: RefreshTokenRepository,
+		private accessTokenService: AccessTokenProviderService,
 		private hashService: HashService,
 	) {}
 
-	async execute({ email, password }: AuthenticateUserDTO): Promise<UserDto> {
+	async execute({ email, password }: AuthenticateUserDTO): Promise<AuthenticateResponseDTO> {
 		const user = await this.usersRepository.findByEmail(email);
 
 		if (!user) {
@@ -29,8 +32,14 @@ export class AuthenticateUseCase {
 		}
 
 		await this.refreshTokensRepository.deleteByUserId(user.id);
-		await this.refreshTokensRepository.generate(user.id);
+		const refreshToken = this.refreshTokensRepository.generate(user.id);
 
-		return UserMapper.toDTO(user);
+		const token = this.accessTokenService.generateAccessToken({sub: user.id, role: user.role})
+
+		return {
+			user: UserMapper.toDTO(user),
+			refreshToken: (await refreshToken).token,
+			accessToken: token
+		};
 	}
 }

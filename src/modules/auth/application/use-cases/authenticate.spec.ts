@@ -6,10 +6,12 @@ import { InMemoryTokensRepository } from "../../domain/repositories/in-memory/in
 import { InMemoryUsersRepository } from "../../domain/repositories/in-memory/in-memory-users-repository.ts";
 import { BcryptHashService } from "../../infrastructure/config/bcrypt.ts";
 import { AuthenticateUseCase } from "./authenticate.ts";
+import { AccessTokenServiceMock } from "./mocks/AccessTokenServiceMock.ts";
 
 let usersRepository: InMemoryUsersRepository;
 let tokensRepository: InMemoryTokensRepository;
 const bcryptService = new BcryptHashService();
+const accessTokenService = new AccessTokenServiceMock();
 let sut: AuthenticateUseCase;
 
 const userData = new User({
@@ -29,6 +31,7 @@ describe("Authenticate Use Case", () => {
 		sut = new AuthenticateUseCase(
 			usersRepository,
 			tokensRepository,
+			accessTokenService,
 			bcryptService,
 		);
 	});
@@ -41,7 +44,7 @@ describe("Authenticate Use Case", () => {
 			password: "12345678",
 		});
 
-		expect(user.id).toEqual(expect.any(String));
+		expect(user.user.id).toEqual(expect.any(String));
 	});
 
 	it("should not be able to authenticate using a non-existent email", async () => {
@@ -78,4 +81,11 @@ describe("Authenticate Use Case", () => {
 
 		expect(tokensList).toHaveLength(1);
 	});
+
+	it("should be able for an user to get an access token", async() => {
+		await usersRepository.create(userData);
+		const session = await sut.execute({ email: "john@email", password: "12345678" });
+		
+		expect(session.accessToken).toBeTruthy()
+	})
 });
