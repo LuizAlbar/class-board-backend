@@ -1,10 +1,10 @@
 import { InvalidCredentialError } from "../../domain/errors/invalid-credential-error.ts";
 import type { RefreshTokenRepository } from "../../domain/repositories/refresh-token-repository.ts";
 import type { UsersRepository } from "../../domain/repositories/users-repository.ts";
-import { AccessTokenProviderService } from "../../domain/services/AccessTokenProviderService.ts";
+import type { AccessTokenProviderService } from "../../domain/services/AccessTokenProviderService.ts";
 import type { HashService } from "../../domain/services/HashService.ts";
-import { AuthenticateResponseDTO } from "../dtos/authenticate.ts";
-import type { AuthenticateUserDTO, UserDto } from "../dtos/user-dtos.ts";
+import type { AuthenticateResponseDTO } from "../dtos/authenticate.ts";
+import type { AuthenticateUserDTO } from "../dtos/user-dtos.ts";
 import { UserMapper } from "../mappers/user-mapper.ts";
 
 export class AuthenticateUseCase {
@@ -15,7 +15,10 @@ export class AuthenticateUseCase {
 		private hashService: HashService,
 	) {}
 
-	async execute({ email, password }: AuthenticateUserDTO): Promise<AuthenticateResponseDTO> {
+	async execute({
+		email,
+		password,
+	}: AuthenticateUserDTO): Promise<AuthenticateResponseDTO> {
 		const user = await this.usersRepository.findByEmail(email);
 
 		if (!user) {
@@ -34,12 +37,15 @@ export class AuthenticateUseCase {
 		await this.refreshTokensRepository.deleteByUserId(user.id);
 		const refreshToken = this.refreshTokensRepository.generate(user.id);
 
-		const token = this.accessTokenService.generateAccessToken({sub: user.id, role: user.role})
+		const token = this.accessTokenService.generateAccessToken({
+			sub: user.id,
+			role: user.role,
+		});
 
 		return {
 			user: UserMapper.toDTO(user),
 			refreshToken: (await refreshToken).token,
-			accessToken: token
+			accessToken: token,
 		};
 	}
 }
