@@ -1,6 +1,6 @@
 import { Redis } from "ioredis";
 
-export const redis = new Redis({ port: 6739 });
+export const redis = new Redis({ host: "class-board-redis", port: 6379 });
 
 redis.on("connect", () => {
 	console.log("Connected to Redis");
