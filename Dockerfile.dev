@@ -4,10 +4,15 @@ WORKDIR /app
 
 COPY . /app/
 
-RUN npm install -g npm@latest
 RUN npm install pnpm -g
+
+COPY package.json pnpm-lock.yaml* ./
+
 RUN pnpm install
 
-EXPOSE 3000
+COPY prisma ./prisma/
+RUN pnpm prisma generate
 
-CMD [ "pnpm", "dev"]
+COPY . .
+
+EXPOSE 3000
