@@ -1,5 +1,7 @@
+import { verifyJWT } from "@/shared/middlewares/verify-jwt.ts";
 import type { FastifyZodTypedInstance } from "@/shared/utils/@types/fastify-zod-type-provider.js";
 import { authenticate } from "../../adapters/controllers/authenticate.ts";
+import { getProfile } from "../../adapters/controllers/get-profile.ts";
 import { register } from "../../adapters/controllers/register.ts";
 import {
 	authenticateUserSchema,
@@ -29,5 +31,17 @@ export async function userRoutes(app: FastifyZodTypedInstance) {
 			},
 		},
 		authenticate,
+	);
+
+	app.get(
+		"/auth/me",
+		{
+			onRequest: [verifyJWT],
+			schema: {
+				tags: ["auth"],
+				description: "User get profile",
+			},
+		},
+		getProfile,
 	);
 }
