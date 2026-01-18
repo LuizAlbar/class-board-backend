@@ -18,12 +18,13 @@ export async function authenticate(
 		const { user, refreshToken, accessToken } =
 			await authenticateUseCase.execute({ email, password });
 
+		FastifyAuthCookiePresenter.clearAuthCookies(reply);
 		FastifyAuthCookiePresenter.setAuthCookies(reply, accessToken, refreshToken);
 
 		return FastifyResponsePresenter.success(
 			reply,
 			200,
-			"User registered successfully",
+			"User authenticated successfully",
 			AuthenticateMapper.toDTO(user, refreshToken, accessToken),
 		);
 	} catch (err) {
