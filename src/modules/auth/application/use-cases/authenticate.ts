@@ -38,8 +38,10 @@ export class AuthenticateUseCase {
 		const refreshToken = this.refreshTokensRepository.generate(user.id);
 
 		const token = this.accessTokenService.generateAccessToken({
-			sub: user.id,
-			role: user.role,
+			sub: {
+				id: user.id,
+				role: user.role,
+			},
 		});
 
 		return {
