@@ -1,6 +1,5 @@
 import type { FastifyReply, FastifyRequest } from "fastify";
 import { FastifyResponsePresenter } from "@/shared/utils/response-handler/fastify-response-presenter.ts";
-import { AuthenticateMapper } from "../../application/mappers/authenticate-mapper.ts";
 import { authenticateUserSchema } from "../../application/validators/user-validators.ts";
 import { InvalidCredentialError } from "../../domain/errors/invalid-credential-error.ts";
 import { makeAuthenticateUseCase } from "../../infrastructure/factories/make-authenticate-use-case.ts";
@@ -25,7 +24,7 @@ export async function authenticate(
 			reply,
 			200,
 			"User authenticated successfully",
-			AuthenticateMapper.toDTO(user, refreshToken, accessToken),
+			user,
 		);
 	} catch (err) {
 		if (err instanceof InvalidCredentialError) {

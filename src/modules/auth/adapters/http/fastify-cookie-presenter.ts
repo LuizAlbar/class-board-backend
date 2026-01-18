@@ -19,6 +19,7 @@ export class FastifyAuthCookiePresenter {
 			path: "/",
 			httpOnly: true,
 			secure: env.NODE_ENV === "prod",
+			signed: true,
 			maxAge: 60 * 60 * 24 * 7,
 			sameSite: "strict",
 		});
