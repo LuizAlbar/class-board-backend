@@ -1,7 +1,10 @@
+import type { UserRole } from "./User.ts";
+
 export interface RefreshTokenProps {
 	id: string;
 	token: string;
 	userId: string;
+	userRole: UserRole;
 	expiresAt: Date;
 }
 
@@ -26,6 +29,9 @@ export class RefreshToken {
 		return this.props.userId;
 	}
 
+	get userRole() {
+		return this.props.userRole;
+	}
 	get expiresAt() {
 		return this.props.expiresAt;
 	}

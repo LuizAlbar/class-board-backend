@@ -63,9 +63,9 @@ describe("Authenticate Use Case", () => {
 
 	it("should be able to create a refresh token", async () => {
 		const user = await usersRepository.create(userData);
-		await sut.execute({ email: "john@email", password: "12345678" });
+		const session = sut.execute({ email: "john@email", password: "12345678" });
 
-		const token = await tokensRepository.findById(user.id);
+		const token = await tokensRepository.findById((await session).refreshToken);
 
 		expect(token?.userId).toEqual(user.id);
 	});
@@ -82,10 +82,13 @@ describe("Authenticate Use Case", () => {
 		expect(tokensList).toHaveLength(1);
 	});
 
-	it("should be able for an user to get an access token", async() => {
+	it("should be able for an user to get an access token", async () => {
 		await usersRepository.create(userData);
-		const session = await sut.execute({ email: "john@email", password: "12345678" });
-		
-		expect(session.accessToken).toBeTruthy()
-	})
+		const session = await sut.execute({
+			email: "john@email",
+			password: "12345678",
+		});
+
+		expect(session.accessToken).toBeTruthy();
+	});
 });
