@@ -29,4 +29,14 @@ export class FastifyAuthCookiePresenter {
 		reply.clearCookie("token", { path: "/" });
 		reply.clearCookie("refreshToken", { path: "/" });
 	}
+
+	static refreshAccessToken(reply: FastifyReply, accessToken: string) {
+		reply.setCookie("token", accessToken, {
+			path: "/",
+			httpOnly: true,
+			secure: env.NODE_ENV === "prod",
+			maxAge: 60 * 15,
+			sameSite: "strict",
+		});
+	}
 }
