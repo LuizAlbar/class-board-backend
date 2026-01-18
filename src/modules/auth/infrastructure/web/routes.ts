@@ -2,6 +2,7 @@ import { verifyJWT } from "@/shared/middlewares/verify-jwt.ts";
 import type { FastifyZodTypedInstance } from "@/shared/utils/@types/fastify-zod-type-provider.js";
 import { authenticate } from "../../adapters/controllers/authenticate.ts";
 import { getProfile } from "../../adapters/controllers/get-profile.ts";
+import { refreshToken } from "../../adapters/controllers/refresh-token.ts";
 import { register } from "../../adapters/controllers/register.ts";
 import {
 	authenticateUserSchema,
@@ -43,5 +44,16 @@ export async function userRoutes(app: FastifyZodTypedInstance) {
 			},
 		},
 		getProfile,
+	);
+
+	app.get(
+		"/auth/refresh-token",
+		{
+			schema: {
+				tags: ["auth"],
+				description: "User refresh token",
+			},
+		},
+		refreshToken,
 	);
 }
