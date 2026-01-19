@@ -1,9 +1,3 @@
-export enum UserRole {
-	COORDENADOR = "COORDENADOR",
-	ESTUDANTE = "ESTUDANTE",
-	PROFESSOR = "PROFESSOR",
-	RESPONSAVEL = "RESPONSAVEL",
-}
 export interface UserProps {
 	id: string;
 	name: string;
@@ -11,7 +5,6 @@ export interface UserProps {
 	password: string;
 	created_at: Date;
 	updated_at: Date;
-	role: UserRole;
 }
 
 export class User {
@@ -46,9 +39,5 @@ export class User {
 
 	get updated_at() {
 		return this.props.updated_at;
-	}
-
-	get role() {
-		return this.props.role;
 	}
 }
