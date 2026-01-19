@@ -1,7 +1,9 @@
 import type { Organization } from "../../entities/Organization.ts";
 import type { OrganizationsRepository } from "../organizations-repository.ts";
 
-export class InMemoryUsersRepository implements OrganizationsRepository {
+export class InMemoryOrganizationsRepository
+	implements OrganizationsRepository
+{
 	public items: Organization[] = [];
 
 	async findById(id: string) {
