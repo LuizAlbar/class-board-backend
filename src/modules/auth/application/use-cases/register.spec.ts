@@ -1,5 +1,4 @@
 import { beforeEach, describe, expect, it } from "vitest";
-import { UserRole } from "../../domain/entities/User.ts";
 import { UserAlreadyExists } from "../../domain/errors/user-already-exists-error.ts";
 import { WeakPasswordError } from "../../domain/errors/weak-password-error.ts";
 import { InMemoryUsersRepository } from "../../domain/repositories/in-memory/in-memory-users-repository.ts";
@@ -14,7 +13,6 @@ const userData = {
 	name: "John",
 	email: "john@email",
 	password: "12345678",
-	role: UserRole.ESTUDANTE,
 };
 describe("Register Use Case", () => {
 	beforeEach(() => {
@@ -51,7 +49,6 @@ describe("Register Use Case", () => {
 				name: "John",
 				email: "john2@email",
 				password: "123456",
-				role: UserRole.ESTUDANTE,
 			}),
 		).rejects.toBeInstanceOf(WeakPasswordError);
 	});

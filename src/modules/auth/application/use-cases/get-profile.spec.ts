@@ -1,6 +1,6 @@
 import { randomUUID } from "node:crypto";
 import { beforeEach, describe, expect, it } from "vitest";
-import { User, UserRole } from "../../domain/entities/User.ts";
+import { User } from "../../domain/entities/User.ts";
 import { ResourceNotFoundError } from "../../domain/errors/resource-not-found.ts";
 import { InMemoryUsersRepository } from "../../domain/repositories/in-memory/in-memory-users-repository.ts";
 import { GetProfileUseCase } from "./get-profile.ts";
@@ -15,7 +15,6 @@ const userData = new User({
 	password: "12345678",
 	created_at: new Date(),
 	updated_at: new Date(),
-	role: UserRole.ESTUDANTE,
 });
 
 describe("Get Profile Use Case", () => {

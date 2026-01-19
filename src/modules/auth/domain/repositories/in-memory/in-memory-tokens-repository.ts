@@ -1,12 +1,11 @@
 import { randomUUID } from "node:crypto";
 import { RefreshToken } from "../../entities/RefreshToken.ts";
-import type { UserRole } from "../../entities/User.ts";
 import type { RefreshTokenRepository } from "../refresh-token-repository.ts";
 
 export class InMemoryTokensRepository implements RefreshTokenRepository {
 	public items: RefreshToken[] = [];
 
-	async generate(userId: string, userRole: UserRole) {
+	async generate(userId: string) {
 		const actualDayPlusSeven = new Date();
 
 		actualDayPlusSeven.setDate(new Date().getDate() + 7);
@@ -14,7 +13,6 @@ export class InMemoryTokensRepository implements RefreshTokenRepository {
 		const token = new RefreshToken({
 			id: randomUUID(),
 			userId: userId,
-			userRole: userRole,
 			token: userId + randomUUID(),
 			expiresAt: actualDayPlusSeven,
 		});

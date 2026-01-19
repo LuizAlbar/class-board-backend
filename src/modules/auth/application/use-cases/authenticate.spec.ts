@@ -1,6 +1,6 @@
 import { randomUUID } from "node:crypto";
 import { beforeEach, describe, expect, it } from "vitest";
-import { User, UserRole } from "../../domain/entities/User.ts";
+import { User } from "../../domain/entities/User.ts";
 import { InvalidCredentialError } from "../../domain/errors/invalid-credential-error.ts";
 import { InMemoryTokensRepository } from "../../domain/repositories/in-memory/in-memory-tokens-repository.ts";
 import { InMemoryUsersRepository } from "../../domain/repositories/in-memory/in-memory-users-repository.ts";
@@ -21,7 +21,6 @@ const userData = new User({
 	password: await bcryptService.hash("12345678"),
 	created_at: new Date(),
 	updated_at: new Date(),
-	role: UserRole.ESTUDANTE,
 });
 
 describe("Authenticate Use Case", () => {

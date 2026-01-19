@@ -1,8 +1,9 @@
-import type { UserRole } from "../../domain/entities/User.ts";
+import type { Role } from "@/modules/membership/domain/entities/Membership.ts";
 
 export interface AccessTokenPayloadDTO {
 	sub: {
 		id: string;
-		role: UserRole;
+		orgId?: string;
+		role?: Role;
 	};
 }

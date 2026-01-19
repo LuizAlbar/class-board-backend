@@ -3,6 +3,7 @@ export enum Role {
 	ESTUDANTE = "ESTUDANTE",
 	PROFESSOR = "PROFESSOR",
 	RESPONSAVEL = "RESPONSAVEL",
+	VISITANTE = "VISITANTE",
 }
 export interface MembershipProps {
 	id: string;

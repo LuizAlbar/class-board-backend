@@ -36,14 +36,12 @@ export class AuthenticateUseCase {
 
 		await this.refreshTokensRepository.deleteByUserId(user.id);
 		const refreshToken = this.refreshTokensRepository.generate(
-			user.id,
-			user.role,
+			user.id
 		);
 
 		const token = this.accessTokenService.generateAccessToken({
 			sub: {
-				id: user.id,
-				role: user.role,
+				id: user.id
 			},
 		});
 

@@ -26,7 +26,6 @@ export class RegisterUseCase {
 			name: dto.name,
 			email: dto.email,
 			password: hashedPassword,
-			role: dto.role,
 			created_at: new Date(),
 			updated_at: new Date(),
 		});

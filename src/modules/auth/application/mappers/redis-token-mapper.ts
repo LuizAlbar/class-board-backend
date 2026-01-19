@@ -5,7 +5,6 @@ export class RedisTokenMapper {
 		const data = {
 			id: refreshToken.id,
 			userId: refreshToken.userId,
-			userRole: refreshToken.userRole,
 			token: refreshToken.token,
 			expiresAt: refreshToken.expiresAt,
 		};
@@ -19,7 +18,6 @@ export class RedisTokenMapper {
 		return new RefreshToken({
 			id: data.id,
 			userId: data.userId,
-			userRole: data.userRole,
 			token: data.token,
 			expiresAt: data.expiresAt,
 		});

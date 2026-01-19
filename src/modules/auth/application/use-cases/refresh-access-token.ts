@@ -27,7 +27,7 @@ export class RefreshAccessTokenUseCase {
 		}
 
 		const userPayload: AccessTokenPayloadDTO = {
-			sub: { id: refreshToken.userId, role: refreshToken.userRole },
+			sub: { id: refreshToken.userId },
 		};
 		const accessToken =
 			this.accessTokenService.generateAccessToken(userPayload);

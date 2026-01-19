@@ -1,4 +1,4 @@
-import type { UserRole } from "@/modules/auth/domain/entities/User.ts";
+import type { Role } from "@/modules/membership/domain/entities/Membership.ts";
 import "@fastify/jwt";
 
 declare module "@fastify/jwt" {
@@ -6,7 +6,8 @@ declare module "@fastify/jwt" {
 		user: {
 			sub: {
 				id: string;
-				role: UserRole;
+				orgId?: string;
+				role?: Role;
 			};
 		};
 	}

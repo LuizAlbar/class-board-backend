@@ -1,6 +1,6 @@
 import { randomUUID } from "node:crypto";
 import { beforeEach, describe, expect, it } from "vitest";
-import { User, UserRole } from "../../domain/entities/User.ts";
+import { User } from "../../domain/entities/User.ts";
 import { UnauthorizedUserError } from "../../domain/errors/unauthorized-user-error.ts";
 import { InMemoryTokensRepository } from "../../domain/repositories/in-memory/in-memory-tokens-repository.ts";
 import { InMemoryUsersRepository } from "../../domain/repositories/in-memory/in-memory-users-repository.ts";
@@ -21,7 +21,6 @@ const userData = new User({
 	password: "12345678",
 	created_at: new Date(),
 	updated_at: new Date(),
-	role: UserRole.ESTUDANTE,
 });
 
 describe("Refresh Token Use Case", () => {
@@ -39,19 +38,15 @@ describe("Refresh Token Use Case", () => {
 		await usersRepository.create(userData);
 		const refreshToken = await tokensRepository.generate(userData.id);
 
-		const auth = await sut.execute(refreshToken.token, {
-			sub: { id: userData.id, role: userData.role },
-		});
+		const auth = await sut.execute(refreshToken.token);
 
 		expect(auth).toEqual(expect.any(String));
 	});
 
 	it("should not be possible to genereate a new token with an invalid token", async () => {
 		await usersRepository.create(userData);
-		await expect(() =>
-			sut.execute("invalid token", {
-				sub: { id: userData.id, role: userData.role },
-			}),
-		).rejects.toBeInstanceOf(UnauthorizedUserError);
+		await expect(() => sut.execute("invalid token")).rejects.toBeInstanceOf(
+			UnauthorizedUserError,
+		);
 	});
 });

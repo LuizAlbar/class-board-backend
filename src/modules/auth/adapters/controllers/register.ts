@@ -6,7 +6,7 @@ import { UserAlreadyExists } from "../../domain/errors/user-already-exists-error
 import { makeRegisterUseCase } from "../../infrastructure/factories/make-register-use-case.ts";
 
 export async function register(request: FastifyRequest, reply: FastifyReply) {
-	const { name, email, password, role } = createUserSchema.parse(request.body);
+	const { name, email, password } = createUserSchema.parse(request.body);
 
 	try {
 		const registerUseCase = makeRegisterUseCase();
@@ -15,7 +15,6 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
 			name,
 			email,
 			password,
-			role,
 		});
 
 		return FastifyResponsePresenter.success(
