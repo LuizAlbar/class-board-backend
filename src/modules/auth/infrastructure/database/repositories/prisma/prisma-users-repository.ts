@@ -1,5 +1,5 @@
 import type { CreateUserDTO } from "@/modules/auth/application/dtos/user-dtos.ts";
-import { PrismaUserMapper } from "@/modules/auth/application/mappers/prisma-user-mapper.ts";
+import { UserMapper } from "@/modules/auth/application/mappers/user-mapper.ts";
 import type { User } from "@/modules/auth/domain/entities/User.ts";
 import type { UsersRepository } from "@/modules/auth/domain/repositories/users-repository.ts";
 import { prisma } from "@/shared/database/prisma.ts";
@@ -11,7 +11,7 @@ export class PrismaUserRepository implements UsersRepository {
 			return null;
 		}
 
-		return PrismaUserMapper.toDomain(user);
+		return UserMapper.toDomain(user);
 	}
 	async findByEmail(email: string) {
 		const user = await prisma.user.findUnique({ where: { email } });
@@ -19,22 +19,22 @@ export class PrismaUserRepository implements UsersRepository {
 			return null;
 		}
 
-		return PrismaUserMapper.toDomain(user);
+		return UserMapper.toDomain(user);
 	}
 	async create(data: CreateUserDTO) {
 		const user = await prisma.user.create({
-			data: PrismaUserMapper.toPrisma(data),
+			data: UserMapper.toPrisma(data),
 		});
 
-		return PrismaUserMapper.toDomain(user);
+		return UserMapper.toDomain(user);
 	}
 	async update(data: User) {
 		const user = await prisma.user.update({
 			where: { id: data.id },
-			data: PrismaUserMapper.toPrisma(data),
+			data: UserMapper.toPrisma(data),
 		});
 
-		return PrismaUserMapper.toDomain(user);
+		return UserMapper.toDomain(user);
 	}
 	async delete(id: string) {
 		await prisma.user.delete({ where: { id: id } });
