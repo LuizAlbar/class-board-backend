@@ -1,6 +1,6 @@
 import type { User as PrismaUser } from "@prisma/client";
 import { User } from "../../domain/entities/User.ts";
-import type { CreateUserDTO, UserDto } from "../dtos/user-dtos.ts";
+import type { CreateUserDTO, UserDto } from "../dtos/user-dto.ts";
 
 export class UserMapper {
 	static toDomain(raw: PrismaUser): User {

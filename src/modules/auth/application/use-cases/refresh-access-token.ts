@@ -3,7 +3,7 @@ import { UnauthorizedUserError } from "../../domain/errors/unauthorized-user-err
 import type { RefreshTokenRepository } from "../../domain/repositories/refresh-token-repository.ts";
 import type { AccessTokenProviderService } from "../../domain/services/AccessTokenProviderService.ts";
 import type { TokenSignatureService } from "../../domain/services/TokenSignatureService.ts";
-import type { AccessTokenPayloadDTO } from "../dtos/access-token.ts";
+import type { AccessTokenPayloadDTO } from "../dtos/access-token-dto.ts";
 
 export class RefreshAccessTokenUseCase {
 	constructor(

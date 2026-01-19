@@ -4,7 +4,7 @@ import { UserAlreadyExists } from "../../domain/errors/user-already-exists-error
 import { WeakPasswordError } from "../../domain/errors/weak-password-error.ts";
 import type { UsersRepository } from "../../domain/repositories/users-repository.ts";
 import type { HashService } from "../../domain/services/HashService.ts";
-import type { CreateUserDTO } from "../dtos/user-dtos.ts";
+import type { CreateUserDTO } from "../dtos/user-dto.ts";
 
 export class RegisterUseCase {
 	constructor(

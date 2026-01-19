@@ -1,4 +1,4 @@
-import type { CreateUserDTO } from "../../application/dtos/user-dtos.ts";
+import type { CreateUserDTO } from "../../application/dtos/user-dto.ts";
 import type { User } from "../entities/User.ts";
 
 export interface UsersRepository {

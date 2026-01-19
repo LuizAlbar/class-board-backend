@@ -1,4 +1,4 @@
-import type { CreateUserDTO } from "@/modules/auth/application/dtos/user-dtos.ts";
+import type { CreateUserDTO } from "@/modules/auth/application/dtos/user-dto.ts";
 import { UserMapper } from "@/modules/auth/application/mappers/user-mapper.ts";
 import type { User } from "@/modules/auth/domain/entities/User.ts";
 import type { UsersRepository } from "@/modules/auth/domain/repositories/users-repository.ts";

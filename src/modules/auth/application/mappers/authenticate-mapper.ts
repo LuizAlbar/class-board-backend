@@ -1,5 +1,5 @@
-import type { AuthenticateResponseDTO } from "../dtos/authenticate.ts";
-import type { UserDto } from "../dtos/user-dtos.ts";
+import type { AuthenticateResponseDTO } from "../dtos/authenticate-dto.ts";
+import type { UserDto } from "../dtos/user-dto.ts";
 
 export class AuthenticateMapper {
 	static toDTO(

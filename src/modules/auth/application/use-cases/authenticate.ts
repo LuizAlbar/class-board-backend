@@ -3,8 +3,8 @@ import type { RefreshTokenRepository } from "../../domain/repositories/refresh-t
 import type { UsersRepository } from "../../domain/repositories/users-repository.ts";
 import type { AccessTokenProviderService } from "../../domain/services/AccessTokenProviderService.ts";
 import type { HashService } from "../../domain/services/HashService.ts";
-import type { AuthenticateResponseDTO } from "../dtos/authenticate.ts";
-import type { AuthenticateUserDTO } from "../dtos/user-dtos.ts";
+import type { AuthenticateResponseDTO } from "../dtos/authenticate-dto.ts";
+import type { AuthenticateUserDTO } from "../dtos/user-dto.ts";
 import { UserMapper } from "../mappers/user-mapper.ts";
 
 export class AuthenticateUseCase {

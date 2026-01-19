@@ -1,4 +1,4 @@
-import type { UserDto } from "./user-dtos.ts";
+import type { UserDto } from "./user-dto.ts";
 
 export interface AuthenticateResponseDTO {
 	user: UserDto;
