@@ -14,3 +14,8 @@ export interface CreateMembershipDTO {
 	userId: string;
 	organizationId: string;
 }
+
+export interface findUserMembershipDTO {
+	userId: string;
+	organizationId: string;
+}
