@@ -13,6 +13,7 @@ import {
 } from "fastify-type-provider-zod";
 import z, { ZodError } from "zod";
 import { userRoutes } from "./modules/auth/infrastructure/web/routes.ts";
+import { organizationRoutes } from "./modules/organizations/infrastructure/web/routes.ts";
 import { env } from "./shared/env/index.ts";
 
 export async function buildApp() {
@@ -112,6 +113,7 @@ export async function buildApp() {
 	// #----- Routes -----#
 
 	app.register(userRoutes);
+	app.register(organizationRoutes);
 
 	return app;
 }
