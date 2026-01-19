@@ -12,6 +12,7 @@ enum Role {
   ESTUDANTE
   PROFESSOR
   RESPONSAVEL
+  VISITANTE
 }
 
 model User {
@@ -21,5 +22,34 @@ model User {
   password   String
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
-  role       Role
+
+  memberships Membership[]
+  @@map("users")
+}
+
+model Organization {
+  id         String   @id @default(uuid())
+  name       String
+  slug       String  @unique
+  created_at DateTime @default(now())
+
+  members    Membership[]
+
+  @@map("organizations")
+}
+
+model Membership {
+  id              String @id @default(uuid())
+  role            Role  @default(VISITANTE)
+  user            User  @relation(fields: [userId], references: [id])
+  userId          String
+
+  organization    Organization @relation(fields: [organizationId], references: [id])
+  organizationId  String
+
+  created_at      DateTime @default(now())
+  updated_at      DateTime @updatedAt
+
+  @@unique([userId, organizationId])
+  @@map("memberships")
 }
