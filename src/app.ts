@@ -31,6 +31,14 @@ export async function buildApp() {
 				.send({ message: "Invalid Data Input", issues: z.treeifyError(error) });
 		}
 
+		console.log(
+			"--------------------------------------------------------------",
+		);
+		console.error(error);
+		console.log(
+			"--------------------------------------------------------------",
+		);
+
 		return reply.status(500).send({ message: "Internal server error" });
 	});
 

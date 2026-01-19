@@ -21,7 +21,7 @@ services:
       - class-board-network
     stdin_open: true
     tty: true
-    command: sh -c "pnpm prisma migrate deploy && pnpm dev"
+    command: sh -c "pnpm prisma migrate deploy && pnpm prisma generate && pnpm dev"
 
   class-board-pg:
     image: bitnami/postgresql
