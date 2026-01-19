@@ -5,7 +5,7 @@ import type {
 	MembershipDTO,
 } from "../dtos/membership-dto.ts";
 
-export class OrganizationMapper {
+export class MembershipMapper {
 	static toDomain(raw: PrismaMembership): Membership {
 		return new Membership({
 			id: raw.id,
