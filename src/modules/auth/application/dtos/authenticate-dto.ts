@@ -5,3 +5,8 @@ export interface AuthenticateResponseDTO {
 	refreshToken: string;
 	accessToken: string;
 }
+
+export interface AuthenticateOrganizationSessionDTO {
+	userId: string;
+	organizationId: string;
+}
