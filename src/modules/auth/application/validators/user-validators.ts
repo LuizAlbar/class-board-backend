@@ -18,4 +18,9 @@ export const authenticateUserSchema = z.object({
 		.refine((s) => !s.includes(" "), "Password cannot contain spaces"),
 });
 
+export const membershipAuthenticationSchema = z.object({
+	userId: z.string(),
+	organizationId: z.string(),
+});
+
 export type CreateUserInput = z.infer<typeof createUserSchema>;
