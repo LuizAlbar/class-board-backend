@@ -1,13 +1,13 @@
 import { randomUUID } from "node:crypto";
-import { Membership } from "../../domain/entities/Membership.ts";
+import { Membership } from "../../domain/entities/membership-entity.ts";
 
-import type { MembershipsRepository } from "../../domain/repositories/memberships-repository.ts";
-import type { CreateMembershipDTO } from "../dtos/membership-dto.ts";
+import type { IMembershipsRepository } from "../../domain/repositories/memberships-repository.ts";
+import type { ICreateMembershipDTO } from "../dtos/membership-dto.ts";
 
 export class CreateMembershipUseCase {
-	constructor(private membershipRepository: MembershipsRepository) {}
+	constructor(private membershipRepository: IMembershipsRepository) {}
 
-	async execute(dto: CreateMembershipDTO) {
+	async execute(dto: ICreateMembershipDTO) {
 		const newMembership = new Membership({
 			id: randomUUID(),
 			role: dto.role,

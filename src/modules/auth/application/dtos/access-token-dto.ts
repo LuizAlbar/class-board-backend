@@ -1,6 +1,6 @@
-import type { Role } from "@/modules/membership/domain/entities/Membership.ts";
+import type { Role } from "@/modules/membership/domain/entities/membership-entity.ts";
 
-export interface AccessTokenPayloadDTO {
+export interface IAccessTokenPayloadDTO {
 	sub: {
 		id: string;
 		orgId?: string;

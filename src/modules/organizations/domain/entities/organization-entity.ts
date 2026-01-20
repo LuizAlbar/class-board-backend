@@ -1,4 +1,4 @@
-export interface OrganizationProps {
+export interface IOrganizationProps {
 	id: string;
 	name: string;
 	slug: string;
@@ -6,9 +6,9 @@ export interface OrganizationProps {
 }
 
 export class Organization {
-	private props: OrganizationProps;
+	private props: IOrganizationProps;
 
-	constructor(props: OrganizationProps) {
+	constructor(props: IOrganizationProps) {
 		this.props = props;
 	}
 

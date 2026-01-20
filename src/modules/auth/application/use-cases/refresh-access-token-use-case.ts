@@ -1,15 +1,15 @@
 import { InvalidCookieError } from "../../domain/errors/invalid-cookie-error.ts";
 import { UnauthorizedUserError } from "../../domain/errors/unauthorized-user-error.ts";
-import type { RefreshTokenRepository } from "../../domain/repositories/refresh-token-repository.ts";
-import type { AccessTokenProviderService } from "../../domain/services/AccessTokenProviderService.ts";
-import type { TokenSignatureService } from "../../domain/services/TokenSignatureService.ts";
-import type { AccessTokenPayloadDTO } from "../dtos/access-token-dto.ts";
+import type { IRefreshTokenRepository } from "../../domain/repositories/refresh-tokens-repository.ts";
+import type { IAccessTokenProviderService } from "../../domain/services/access-token-provider-service.ts";
+import type { ITokenSignatureService } from "../../domain/services/token-signature-service.ts";
+import type { IAccessTokenPayloadDTO } from "../dtos/access-token-dto.ts";
 
 export class RefreshAccessTokenUseCase {
 	constructor(
-		private refreshTokensRepository: RefreshTokenRepository,
-		private tokenSignatureService: TokenSignatureService,
-		private accessTokenService: AccessTokenProviderService,
+		private refreshTokensRepository: IRefreshTokenRepository,
+		private tokenSignatureService: ITokenSignatureService,
+		private accessTokenService: IAccessTokenProviderService,
 	) {}
 
 	async execute(signedRefreshToken: string) {
@@ -26,7 +26,7 @@ export class RefreshAccessTokenUseCase {
 			throw new UnauthorizedUserError();
 		}
 
-		const userPayload: AccessTokenPayloadDTO = {
+		const userPayload: IAccessTokenPayloadDTO = {
 			sub: { id: refreshToken.userId },
 		};
 		const accessToken =

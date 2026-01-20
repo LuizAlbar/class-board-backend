@@ -1,7 +1,7 @@
 import { compare, hash } from "bcryptjs";
-import type { HashService } from "../../domain/services/HashService.ts";
+import type { IHashService } from "../../domain/services/hash-service.ts";
 
-export class BcryptHashService implements HashService {
+export class BcryptHashService implements IHashService {
 	async hash(value: string) {
 		return hash(value, 8);
 	}

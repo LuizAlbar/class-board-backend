@@ -1,7 +1,7 @@
-import type { CreateOrganizationDTO } from "../../application/dtos/organization-dto.ts";
-import type { Organization } from "../entities/Organization.ts";
+import type { ICreateOrganizationDTO } from "../../application/dtos/organization-dto.ts";
+import type { Organization } from "../entities/organization-entity.ts";
 
-export interface OrganizationsRepository {
+export interface IOrganizationsRepository {
 	findById(id: string): Promise<Organization | null>;
-	create(data: CreateOrganizationDTO): Promise<Organization>;
+	create(data: ICreateOrganizationDTO): Promise<Organization>;
 }

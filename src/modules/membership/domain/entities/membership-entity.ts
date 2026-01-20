@@ -5,7 +5,7 @@ export enum Role {
 	RESPONSAVEL = "RESPONSAVEL",
 	VISITANTE = "VISITANTE",
 }
-export interface MembershipProps {
+export interface IMembershipProps {
 	id: string;
 	role: Role;
 	userId: string;
@@ -15,9 +15,9 @@ export interface MembershipProps {
 }
 
 export class Membership {
-	private props: MembershipProps;
+	private props: IMembershipProps;
 
-	constructor(props: MembershipProps) {
+	constructor(props: IMembershipProps) {
 		this.props = props;
 	}
 

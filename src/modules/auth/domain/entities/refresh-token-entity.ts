@@ -1,4 +1,4 @@
-export interface RefreshTokenProps {
+export interface IRefreshTokenProps {
 	id: string;
 	token: string;
 	userId: string;
@@ -6,8 +6,8 @@ export interface RefreshTokenProps {
 }
 
 export class RefreshToken {
-	private props: RefreshTokenProps;
-	constructor(props: RefreshTokenProps) {
+	private props: IRefreshTokenProps;
+	constructor(props: IRefreshTokenProps) {
 		this.props = props;
 	}
 

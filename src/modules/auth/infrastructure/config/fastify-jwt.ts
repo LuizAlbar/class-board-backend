@@ -1,10 +1,10 @@
 import type { FastifyInstance } from "fastify";
-import type { AccessTokenPayloadDTO } from "../../application/dtos/access-token.ts";
-import type { AccessTokenProviderService } from "../../domain/services/AccessTokenProviderService.ts";
+import type { IAccessTokenPayloadDTO } from "../../application/dtos/access-token-dto.ts";
+import type { IAccessTokenProviderService } from "../../domain/services/access-token-provider-service.ts";
 
-export class FastifyJWTProvider implements AccessTokenProviderService {
+export class FastifyJWTProvider implements IAccessTokenProviderService {
 	constructor(private app: FastifyInstance) {}
-	generateAccessToken(payload: AccessTokenPayloadDTO) {
+	generateAccessToken(payload: IAccessTokenPayloadDTO) {
 		return this.app.jwt.sign(payload, { expiresIn: "15m" });
 	}
 }

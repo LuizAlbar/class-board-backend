@@ -21,7 +21,7 @@ const healthCheckSchema = z.object({
 	system: z.object({ memory_usage: z.string() }),
 });
 
-type HealthCheckResponse = z.infer<typeof healthCheckSchema>;
+type IHealthCheckResponse = z.infer<typeof healthCheckSchema>;
 export async function healthCheck(appInstance: FastifyZodTypedInstance) {
 	appInstance.get(
 		"/health",
@@ -43,7 +43,7 @@ export async function healthCheck(appInstance: FastifyZodTypedInstance) {
 					timeZone: "America/Sao_Paulo",
 				});
 
-				const response: HealthCheckResponse = {
+				const response: IHealthCheckResponse = {
 					status: "healthy",
 					timeStamp: timeStamp,
 					uptime: uptime,

@@ -1,7 +1,7 @@
-import type { User } from "../../entities/User.ts";
-import type { UsersRepository } from "../users-repository.ts";
+import type { User } from "../../entities/user-entity.ts";
+import type { IUsersRepository } from "../users-repository.ts";
 
-export class InMemoryUsersRepository implements UsersRepository {
+export class InMemoryUsersRepository implements IUsersRepository {
 	public items: User[] = [];
 
 	async findById(id: string) {

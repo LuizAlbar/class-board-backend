@@ -1,8 +1,8 @@
-import type { findUserMembershipDTO } from "@/modules/membership/application/dtos/membership-dto.ts";
-import type { Membership } from "../../entities/Membership.ts";
-import type { MembershipsRepository } from "../memberships-repository.ts";
+import type { IFindUserMembershipDTO } from "@/modules/membership/application/dtos/membership-dto.ts";
+import type { Membership } from "../../entities/membership-entity.ts";
+import type { IMembershipsRepository } from "../memberships-repository.ts";
 
-export class InMemoryMembershipsRepository implements MembershipsRepository {
+export class InMemoryMembershipsRepository implements IMembershipsRepository {
 	public items: Membership[] = [];
 
 	async findById(id: string) {
@@ -21,8 +21,8 @@ export class InMemoryMembershipsRepository implements MembershipsRepository {
 		return membership;
 	}
 
-	async findUserInAOrganization(
-		data: findUserMembershipDTO,
+	async findUserAndOrganization(
+		data: IFindUserMembershipDTO,
 	): Promise<Membership | null> {
 		const membership = this.items.find(
 			(item) =>

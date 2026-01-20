@@ -1,12 +1,12 @@
-import type { UserDto } from "./user-dto.ts";
+import type { IUserDto } from "./user-dto.ts";
 
-export interface AuthenticateResponseDTO {
-	user: UserDto;
+export interface IAuthenticateResponseDTO {
+	user: IUserDto;
 	refreshToken: string;
 	accessToken: string;
 }
 
-export interface AuthenticateOrganizationSessionDTO {
+export interface IAuthenticateOrganizationSessionDTO {
 	userId: string;
 	organizationId: string;
 }

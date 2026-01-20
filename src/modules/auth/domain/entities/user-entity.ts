@@ -1,4 +1,4 @@
-export interface UserProps {
+export interface IUserProps {
 	id: string;
 	name: string;
 	email: string;
@@ -8,9 +8,9 @@ export interface UserProps {
 }
 
 export class User {
-	private props: UserProps;
+	private props: IUserProps;
 
-	constructor(props: UserProps) {
+	constructor(props: IUserProps) {
 		if (!props.password || props.password.length < 8) {
 			throw new Error();
 		}

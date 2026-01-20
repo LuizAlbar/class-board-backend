@@ -1,6 +1,6 @@
-import type { Role } from "../../domain/entities/Membership.ts";
+import type { Role } from "../../domain/entities/membership-entity.ts";
 
-export interface MembershipDTO {
+export interface IMembershipDTO {
 	id: string;
 	role: Role;
 	userId: string;
@@ -9,13 +9,13 @@ export interface MembershipDTO {
 	updated_at: Date;
 }
 
-export interface CreateMembershipDTO {
+export interface ICreateMembershipDTO {
 	role: Role;
 	userId: string;
 	organizationId: string;
 }
 
-export interface findUserMembershipDTO {
+export interface IFindUserMembershipDTO {
 	userId: string;
 	organizationId: string;
 }

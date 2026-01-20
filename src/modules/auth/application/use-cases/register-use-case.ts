@@ -1,18 +1,18 @@
 import { randomUUID } from "node:crypto";
-import { User } from "../../domain/entities/User.ts";
+import { User } from "../../domain/entities/user-entity.ts";
 import { UserAlreadyExists } from "../../domain/errors/user-already-exists-error.ts";
 import { WeakPasswordError } from "../../domain/errors/weak-password-error.ts";
-import type { UsersRepository } from "../../domain/repositories/users-repository.ts";
-import type { HashService } from "../../domain/services/HashService.ts";
-import type { CreateUserDTO } from "../dtos/user-dto.ts";
+import type { IUsersRepository } from "../../domain/repositories/users-repository.ts";
+import type { IHashService } from "../../domain/services/hash-service.ts";
+import type { ICreateUserDTO } from "../dtos/user-dto.ts";
 
 export class RegisterUseCase {
 	constructor(
-		private usersRepository: UsersRepository,
-		private hashService: HashService,
+		private usersRepository: IUsersRepository,
+		private hashService: IHashService,
 	) {}
 
-	async execute(dto: CreateUserDTO) {
+	async execute(dto: ICreateUserDTO) {
 		const userExists = await this.usersRepository.findByEmail(dto.email);
 
 		if (userExists) {

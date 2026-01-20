@@ -1,6 +1,6 @@
 import type { User as PrismaUser } from "@prisma/client";
-import { User } from "../../domain/entities/User.ts";
-import type { CreateUserDTO, UserDto } from "../dtos/user-dto.ts";
+import { User } from "../../domain/entities/user-entity.ts";
+import type { ICreateUserDTO, IUserDto } from "../dtos/user-dto.ts";
 
 export class UserMapper {
 	static toDomain(raw: PrismaUser): User {
@@ -14,7 +14,7 @@ export class UserMapper {
 		});
 	}
 
-	static toPrisma(data: CreateUserDTO) {
+	static toPrisma(data: ICreateUserDTO) {
 		return {
 			name: data.name,
 			email: data.email,
@@ -22,7 +22,7 @@ export class UserMapper {
 		};
 	}
 
-	static toDTO(user: User): UserDto {
+	static toDTO(user: User): IUserDto {
 		return {
 			id: user.id,
 			name: user.name,

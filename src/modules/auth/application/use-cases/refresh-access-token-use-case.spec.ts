@@ -1,12 +1,12 @@
 import { randomUUID } from "node:crypto";
 import { beforeEach, describe, expect, it } from "vitest";
-import { User } from "../../domain/entities/User.ts";
+import { User } from "../../domain/entities/user-entity.ts";
 import { UnauthorizedUserError } from "../../domain/errors/unauthorized-user-error.ts";
 import { InMemoryTokensRepository } from "../../domain/repositories/in-memory/in-memory-tokens-repository.ts";
 import { InMemoryUsersRepository } from "../../domain/repositories/in-memory/in-memory-users-repository.ts";
-import { AccessTokenServiceMock } from "./mocks/AccessTokenServiceMock.ts";
-import { TokenSignatureServiceMock } from "./mocks/TokenSignatureServiceMock.ts";
-import { RefreshAccessTokenUseCase } from "./refresh-access-token.ts";
+import { AccessTokenServiceMock } from "./mocks/access-token-service-mock.ts";
+import { TokenSignatureServiceMock } from "./mocks/token-signature-service-mock.ts";
+import { RefreshAccessTokenUseCase } from "./refresh-access-token-use-case.ts";
 
 const tokenSignatureService = new TokenSignatureServiceMock();
 const accessTokenService = new AccessTokenServiceMock();

@@ -1,13 +1,13 @@
 import { randomUUID } from "node:crypto";
-import { Organization } from "../../domain/entities/Organization.ts";
+import { Organization } from "../../domain/entities/organization-entity.ts";
 
-import type { OrganizationsRepository } from "../../domain/repositories/organizations-repository.ts";
-import type { CreateOrganizationDTO } from "../dtos/organization-dto.ts";
+import type { IOrganizationsRepository } from "../../domain/repositories/organizations-repository.ts";
+import type { ICreateOrganizationDTO } from "../dtos/organization-dto.ts";
 
 export class CreateOrganizationUseCase {
-	constructor(private organizationRepository: OrganizationsRepository) {}
+	constructor(private organizationRepository: IOrganizationsRepository) {}
 
-	async execute(dto: CreateOrganizationDTO) {
+	async execute(dto: ICreateOrganizationDTO) {
 		const newOrganization = new Organization({
 			id: randomUUID(),
 			name: dto.name,
@@ -15,7 +15,8 @@ export class CreateOrganizationUseCase {
 			created_at: new Date(),
 		});
 
-		const organization = await this.organizationRepository.create(newOrganization);
+		const organization =
+			await this.organizationRepository.create(newOrganization);
 
 		return { organization };
 	}

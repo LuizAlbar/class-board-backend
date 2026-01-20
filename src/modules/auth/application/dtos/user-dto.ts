@@ -1,4 +1,4 @@
-export interface UserDto {
+export interface IUserDto {
 	id: string;
 	name: string;
 	email: string;
@@ -6,13 +6,13 @@ export interface UserDto {
 	updated_at: Date;
 }
 
-export interface CreateUserDTO {
+export interface ICreateUserDTO {
 	name: string;
 	email: string;
 	password: string;
 }
 
-export interface AuthenticateUserDTO {
+export interface IAuthenticateUserDTO {
 	email: string;
 	password: string;
 }

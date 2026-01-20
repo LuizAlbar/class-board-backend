@@ -1,8 +1,8 @@
-import type { Organization } from "../../entities/Organization.ts";
-import type { OrganizationsRepository } from "../organizations-repository.ts";
+import type { Organization } from "../../entities/organization-entity.ts";
+import type { IOrganizationsRepository } from "../organizations-repository.ts";
 
 export class InMemoryOrganizationsRepository
-	implements OrganizationsRepository
+	implements IOrganizationsRepository
 {
 	public items: Organization[] = [];
 

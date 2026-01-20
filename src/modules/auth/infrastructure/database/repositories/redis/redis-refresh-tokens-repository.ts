@@ -1,10 +1,10 @@
 import { randomUUID } from "node:crypto";
 import { RedisTokenMapper } from "@/modules/auth/application/mappers/redis-token-mapper.ts";
-import { RefreshToken } from "@/modules/auth/domain/entities/RefreshToken.ts";
-import type { RefreshTokenRepository } from "@/modules/auth/domain/repositories/refresh-token-repository.ts";
+import { RefreshToken } from "@/modules/auth/domain/entities/refresh-token-entity.ts";
+import type { IRefreshTokenRepository } from "@/modules/auth/domain/repositories/refresh-tokens-repository.ts";
 import { redis } from "@/shared/database/redis.ts";
 
-export class RedisRefreshTokenRepository implements RefreshTokenRepository {
+export class RedisRefreshTokenRepository implements IRefreshTokenRepository {
 	async generate(userId: string): Promise<RefreshToken> {
 		const actualDayPlusSeven = new Date();
 		actualDayPlusSeven.setDate(new Date().getDate() + 7);

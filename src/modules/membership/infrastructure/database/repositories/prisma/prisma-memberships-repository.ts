@@ -1,13 +1,13 @@
 import type {
-	CreateMembershipDTO,
-	findUserMembershipDTO,
+	ICreateMembershipDTO,
+	IFindUserMembershipDTO,
 } from "@/modules/membership/application/dtos/membership-dto.ts";
 import { MembershipMapper } from "@/modules/membership/application/mappers/membership-mapper.ts";
-import type { Membership } from "@/modules/membership/domain/entities/Membership.ts";
-import type { MembershipsRepository } from "@/modules/membership/domain/repositories/memberships-repository.ts";
+import type { Membership } from "@/modules/membership/domain/entities/membership-entity.ts";
+import type { IMembershipsRepository } from "@/modules/membership/domain/repositories/memberships-repository.ts";
 import { prisma } from "@/shared/database/prisma.ts";
 
-export class PrismaMembershipsRepository implements MembershipsRepository {
+export class PrismaMembershipsRepository implements IMembershipsRepository {
 	async findById(id: string) {
 		const membership = await prisma.membership.findUnique({
 			where: { id },
@@ -19,7 +19,7 @@ export class PrismaMembershipsRepository implements MembershipsRepository {
 		return MembershipMapper.toDomain(membership);
 	}
 
-	async create(data: CreateMembershipDTO) {
+	async create(data: ICreateMembershipDTO) {
 		const membership = await prisma.membership.create({
 			data: MembershipMapper.toPrisma(data),
 		});
@@ -27,8 +27,8 @@ export class PrismaMembershipsRepository implements MembershipsRepository {
 		return MembershipMapper.toDomain(membership);
 	}
 
-	async findUserInAOrganization(
-		data: findUserMembershipDTO,
+	async findUserAndOrganization(
+		data: IFindUserMembershipDTO,
 	): Promise<Membership | null> {
 		const membership = await prisma.membership.findFirst({
 			where: { userId: data.userId, organizationId: data.organizationId },

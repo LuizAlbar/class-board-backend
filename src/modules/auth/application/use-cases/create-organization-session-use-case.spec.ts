@@ -3,11 +3,11 @@ import { beforeEach, describe, expect, it } from "vitest";
 import {
 	Membership,
 	Role,
-} from "@/modules/membership/domain/entities/Membership.ts";
+} from "@/modules/membership/domain/entities/membership-entity.ts";
 import { InMemoryMembershipsRepository } from "@/modules/membership/domain/repositories/in-memory/in-memory-memberships-repository.ts";
 import { ForbiddenOrganizationError } from "../../domain/errors/forbidden-organization-error.ts";
-import { CreateOrganizationSessionUseCase } from "./create-organization-session.ts";
-import { AccessTokenServiceMock } from "./mocks/AccessTokenServiceMock.ts";
+import { CreateOrganizationSessionUseCase } from "./create-organization-session-use-case.ts";
+import { AccessTokenServiceMock } from "./mocks/access-token-service-mock.ts";
 
 let membershipsRepository: InMemoryMembershipsRepository;
 let sut: CreateOrganizationSessionUseCase;

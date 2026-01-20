@@ -1,6 +1,6 @@
 import { BcryptHashService } from "@/modules/auth/infrastructure/config/bcrypt.ts";
 import { PrismaUserRepository } from "@/modules/auth/infrastructure/database/repositories/prisma/prisma-users-repository.ts";
-import { RegisterUseCase } from "../../application/use-cases/register.ts";
+import { RegisterUseCase } from "../../application/use-cases/register-use-case.ts";
 
 export function makeRegisterUseCase() {
 	const prismaUserRepository = new PrismaUserRepository();

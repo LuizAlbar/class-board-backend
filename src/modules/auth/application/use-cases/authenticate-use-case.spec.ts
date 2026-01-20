@@ -1,12 +1,12 @@
 import { randomUUID } from "node:crypto";
 import { beforeEach, describe, expect, it } from "vitest";
-import { User } from "../../domain/entities/User.ts";
+import { User } from "../../domain/entities/user-entity.ts";
 import { InvalidCredentialError } from "../../domain/errors/invalid-credential-error.ts";
 import { InMemoryTokensRepository } from "../../domain/repositories/in-memory/in-memory-tokens-repository.ts";
 import { InMemoryUsersRepository } from "../../domain/repositories/in-memory/in-memory-users-repository.ts";
 import { BcryptHashService } from "../../infrastructure/config/bcrypt.ts";
-import { AuthenticateUseCase } from "./authenticate.ts";
-import { AccessTokenServiceMock } from "./mocks/AccessTokenServiceMock.ts";
+import { AuthenticateUseCase } from "./authenticate-use-case.ts";
+import { AccessTokenServiceMock } from "./mocks/access-token-service-mock.ts";
 
 let usersRepository: InMemoryUsersRepository;
 let tokensRepository: InMemoryTokensRepository;

@@ -1,11 +1,11 @@
-export interface OrganizationDTO {
+export interface IOrganizationDTO {
 	id: string;
 	name: string;
 	slug: string;
 	created_at: Date;
 }
 
-export interface CreateOrganizationDTO {
+export interface ICreateOrganizationDTO {
 	name: string;
 	slug: string;
 }

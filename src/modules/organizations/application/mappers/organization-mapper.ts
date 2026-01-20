@@ -1,8 +1,8 @@
 import type { Organization as PrismaOrganization } from "@prisma/client";
-import { Organization } from "../../domain/entities/Organization.ts";
+import { Organization } from "../../domain/entities/organization-entity.ts";
 import type {
-	CreateOrganizationDTO,
-	OrganizationDTO,
+	ICreateOrganizationDTO,
+	IOrganizationDTO,
 } from "../dtos/organization-dto.ts";
 
 export class OrganizationMapper {
@@ -15,14 +15,14 @@ export class OrganizationMapper {
 		});
 	}
 
-	static toPrisma(data: CreateOrganizationDTO) {
+	static toPrisma(data: ICreateOrganizationDTO) {
 		return {
 			name: data.name,
 			slug: data.slug,
 		};
 	}
 
-	static toDTO(organization: Organization): OrganizationDTO {
+	static toDTO(organization: Organization): IOrganizationDTO {
 		return {
 			id: organization.id,
 			name: organization.name,

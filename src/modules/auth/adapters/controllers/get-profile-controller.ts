@@ -1,7 +1,7 @@
 import type { FastifyReply, FastifyRequest } from "fastify";
 import { FastifyResponsePresenter } from "@/shared/utils/response-handler/fastify-response-presenter.ts";
 import { UserMapper } from "../../application/mappers/user-mapper.ts";
-import { ResourceNotFoundError } from "../../domain/errors/resource-not-found.ts";
+import { ResourceNotFoundError } from "../../domain/errors/resource-not-found-error.ts";
 import { makeGetProfileUseCase } from "../../infrastructure/factories/make-get-profile-use-case.ts";
 
 export async function getProfile(request: FastifyRequest, reply: FastifyReply) {

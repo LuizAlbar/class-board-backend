@@ -1,10 +1,10 @@
-import type { CreateUserDTO } from "@/modules/auth/application/dtos/user-dto.ts";
+import type { ICreateUserDTO } from "@/modules/auth/application/dtos/user-dto.ts";
 import { UserMapper } from "@/modules/auth/application/mappers/user-mapper.ts";
-import type { User } from "@/modules/auth/domain/entities/User.ts";
-import type { UsersRepository } from "@/modules/auth/domain/repositories/users-repository.ts";
+import type { User } from "@/modules/auth/domain/entities/user-entity.ts";
+import type { IUsersRepository } from "@/modules/auth/domain/repositories/users-repository.ts";
 import { prisma } from "@/shared/database/prisma.ts";
 
-export class PrismaUserRepository implements UsersRepository {
+export class PrismaUserRepository implements IUsersRepository {
 	async findById(id: string) {
 		const user = await prisma.user.findUnique({ where: { id } });
 		if (!user) {
@@ -21,7 +21,7 @@ export class PrismaUserRepository implements UsersRepository {
 
 		return UserMapper.toDomain(user);
 	}
-	async create(data: CreateUserDTO) {
+	async create(data: ICreateUserDTO) {
 		const user = await prisma.user.create({
 			data: UserMapper.toPrisma(data),
 		});

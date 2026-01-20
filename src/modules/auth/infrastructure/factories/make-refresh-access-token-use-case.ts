@@ -1,8 +1,8 @@
 import type { FastifyInstance } from "fastify";
-import { RefreshAccessTokenUseCase } from "../../application/use-cases/refresh-access-token.ts";
+import { RefreshAccessTokenUseCase } from "../../application/use-cases/refresh-access-token-use-case.ts";
 import { FastifyJWTProvider } from "../config/fastify-jwt.ts";
 import { FastifyTokenSignatureService } from "../config/fastify-token.ts";
-import { RedisRefreshTokenRepository } from "../database/repositories/redis/redis-refresh-token-repository.ts";
+import { RedisRefreshTokenRepository } from "../database/repositories/redis/redis-refresh-tokens-repository.ts";
 
 export function MakeRefreshAccessTokenUseCase(appInstance: FastifyInstance) {
 	const redisRefreshTokenRepository = new RedisRefreshTokenRepository();

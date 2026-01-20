@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it } from "vitest";
-import { Role } from "../../domain/entities/Membership.ts";
+import { Role } from "../../domain/entities/membership-entity.ts";
 import { InMemoryMembershipsRepository } from "../../domain/repositories/in-memory/in-memory-memberships-repository.ts";
 import { CreateMembershipUseCase } from "./create-membership-use-case.ts";
 

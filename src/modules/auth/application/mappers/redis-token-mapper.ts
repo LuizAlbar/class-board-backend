@@ -1,4 +1,4 @@
-import { RefreshToken } from "../../domain/entities/RefreshToken.ts";
+import { RefreshToken } from "../../domain/entities/refresh-token-entity.ts";
 
 export class RedisTokenMapper {
 	static toPersistance(refreshToken: RefreshToken) {

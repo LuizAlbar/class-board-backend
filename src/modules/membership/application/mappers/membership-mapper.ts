@@ -1,8 +1,11 @@
 import type { Membership as PrismaMembership } from "@prisma/client";
-import { Membership, type Role } from "../../domain/entities/Membership.ts";
+import {
+	Membership,
+	type Role,
+} from "../../domain/entities/membership-entity.ts";
 import type {
-	CreateMembershipDTO,
-	MembershipDTO,
+	ICreateMembershipDTO,
+	IMembershipDTO,
 } from "../dtos/membership-dto.ts";
 
 export class MembershipMapper {
@@ -17,7 +20,7 @@ export class MembershipMapper {
 		});
 	}
 
-	static toPrisma(data: CreateMembershipDTO) {
+	static toPrisma(data: ICreateMembershipDTO) {
 		return {
 			role: data.role,
 			userId: data.userId,
@@ -25,7 +28,7 @@ export class MembershipMapper {
 		};
 	}
 
-	static toDTO(membership: Membership): MembershipDTO {
+	static toDTO(membership: Membership): IMembershipDTO {
 		return {
 			id: membership.id,
 			role: membership.role,

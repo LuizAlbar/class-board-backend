@@ -1,10 +1,10 @@
 import { verifyJWT } from "@/shared/middlewares/verify-jwt.ts";
 import type { FastifyZodTypedInstance } from "@/shared/utils/@types/fastify-zod-type-provider.js";
-import { authenticate } from "../../adapters/controllers/authenticate.ts";
-import { createOrganizationSession } from "../../adapters/controllers/create-organization-session.ts";
-import { getProfile } from "../../adapters/controllers/get-profile.ts";
-import { refreshToken } from "../../adapters/controllers/refresh-token.ts";
-import { register } from "../../adapters/controllers/register.ts";
+import { authenticate } from "../../adapters/controllers/authenticate-controller.ts";
+import { createOrganizationSession } from "../../adapters/controllers/create-organization-session-controller.ts";
+import { getProfile } from "../../adapters/controllers/get-profile-controller.ts";
+import { refreshToken } from "../../adapters/controllers/refresh-token-controller.ts";
+import { register } from "../../adapters/controllers/register-controller.ts";
 import {
 	authenticateUserSchema,
 	createUserSchema,

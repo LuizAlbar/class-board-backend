@@ -1,9 +1,9 @@
 import type { FastifyInstance } from "fastify";
-import { AuthenticateUseCase } from "../../application/use-cases/authenticate.ts";
+import { AuthenticateUseCase } from "../../application/use-cases/authenticate-use-case.ts";
 import { BcryptHashService } from "../config/bcrypt.ts";
 import { FastifyJWTProvider } from "../config/fastify-jwt.ts";
 import { PrismaUserRepository } from "../database/repositories/prisma/prisma-users-repository.ts";
-import { RedisRefreshTokenRepository } from "../database/repositories/redis/redis-refresh-token-repository.ts";
+import { RedisRefreshTokenRepository } from "../database/repositories/redis/redis-refresh-tokens-repository.ts";
 
 export function makeAuthenticateUseCase(appInstance: FastifyInstance) {
 	const prismaUserRepository = new PrismaUserRepository();

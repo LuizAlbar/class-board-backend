@@ -1,8 +1,8 @@
 import { randomUUID } from "node:crypto";
-import { RefreshToken } from "../../entities/RefreshToken.ts";
-import type { RefreshTokenRepository } from "../refresh-token-repository.ts";
+import { RefreshToken } from "../../entities/refresh-token-entity.ts";
+import type { IRefreshTokenRepository } from "../refresh-tokens-repository.ts";
 
-export class InMemoryTokensRepository implements RefreshTokenRepository {
+export class InMemoryTokensRepository implements IRefreshTokenRepository {
 	public items: RefreshToken[] = [];
 
 	async generate(userId: string) {

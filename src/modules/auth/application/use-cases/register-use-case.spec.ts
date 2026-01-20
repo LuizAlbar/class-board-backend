@@ -3,7 +3,7 @@ import { UserAlreadyExists } from "../../domain/errors/user-already-exists-error
 import { WeakPasswordError } from "../../domain/errors/weak-password-error.ts";
 import { InMemoryUsersRepository } from "../../domain/repositories/in-memory/in-memory-users-repository.ts";
 import { BcryptHashService } from "../../infrastructure/config/bcrypt.ts";
-import { RegisterUseCase } from "./register.ts";
+import { RegisterUseCase } from "./register-use-case.ts";
 
 let usersRepository: InMemoryUsersRepository;
 const bcryptService = new BcryptHashService();
