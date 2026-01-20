@@ -1,12 +1,14 @@
 import { verifyJWT } from "@/shared/middlewares/verify-jwt.ts";
 import type { FastifyZodTypedInstance } from "@/shared/utils/@types/fastify-zod-type-provider.js";
 import { authenticate } from "../../adapters/controllers/authenticate.ts";
+import { createOrganizationSession } from "../../adapters/controllers/create-organization-session.ts";
 import { getProfile } from "../../adapters/controllers/get-profile.ts";
 import { refreshToken } from "../../adapters/controllers/refresh-token.ts";
 import { register } from "../../adapters/controllers/register.ts";
 import {
 	authenticateUserSchema,
 	createUserSchema,
+	membershipAuthenticationSchema,
 } from "../../application/validators/user-validators.ts";
 
 export async function userRoutes(app: FastifyZodTypedInstance) {
@@ -55,5 +57,18 @@ export async function userRoutes(app: FastifyZodTypedInstance) {
 			},
 		},
 		refreshToken,
+	);
+
+	app.patch(
+		"/auth/organization",
+		{
+			onRequest: [verifyJWT],
+			schema: {
+				tags: ["auth"],
+				description: "Create organization session",
+				body: membershipAuthenticationSchema,
+			},
+		},
+		createOrganizationSession,
 	);
 }
