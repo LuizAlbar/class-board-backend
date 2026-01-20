@@ -16,6 +16,7 @@ import { userRoutes } from "./modules/auth/infrastructure/web/routes.ts";
 import { membershipRoutes } from "./modules/membership/infrastructure/web/routes.ts";
 import { organizationRoutes } from "./modules/organizations/infrastructure/web/routes.ts";
 import { env } from "./shared/env/index.ts";
+import { healthCheck } from "./shared/monitoring/health-check.ts";
 
 export async function buildApp() {
 	// #----- App -----#
@@ -113,6 +114,7 @@ export async function buildApp() {
 
 	// #----- Routes -----#
 
+	app.register(healthCheck);
 	app.register(userRoutes);
 	app.register(organizationRoutes);
 	app.register(membershipRoutes);
