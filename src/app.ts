@@ -49,7 +49,7 @@ export async function buildApp() {
 	app.register(fastifyJWT, {
 		secret: env.JWT_SECRET,
 		cookie: {
-			cookieName: "token",
+			cookieName: "__cb.auth_session",
 			signed: false,
 		},
 	});
