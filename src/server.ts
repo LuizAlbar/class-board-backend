@@ -1,9 +1,18 @@
 import { buildApp } from "./app.ts";
 import { env } from "./shared/env/index.ts";
+import { gracefulShutdown } from "./shared/monitoring/graceful-shutdown.ts";
 
 async function startServer() {
 	const app = await buildApp();
 	const PORT = env.PORT;
+
+	process.on("SIGINT", () => {
+		gracefulShutdown(app);
+	});
+
+	process.on("SIGTERM", () => {
+		gracefulShutdown(app);
+	});
 
 	try {
 		await app
