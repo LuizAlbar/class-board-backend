@@ -15,6 +15,7 @@ import z, { ZodError } from "zod";
 import { userRoutes } from "./modules/auth/infrastructure/web/routes.ts";
 import { membershipRoutes } from "./modules/membership/infrastructure/web/routes.ts";
 import { organizationRoutes } from "./modules/organizations/infrastructure/web/routes.ts";
+import { setupRedisLogging } from "./shared/database/redis.ts";
 import { env } from "./shared/env/index.ts";
 import { healthCheck } from "./shared/monitoring/health-check.ts";
 
@@ -22,8 +23,29 @@ export async function buildApp() {
 	// #----- App -----#
 
 	const app = fastify({
-		logger: true,
+		logger: {
+			level: "debug",
+			serializers: {
+				req(request) {
+					return {
+						method: request.method,
+						url: request.url,
+					};
+				},
+			},
+			transport: {
+				target: "pino-pretty",
+				options: {
+					colorize: true,
+					translateTime: "HH:MM:ss Z",
+					ignore: "pid,hostname",
+					include: "level,time,msg,query,params",
+				},
+			},
+		},
 	}).withTypeProvider<ZodTypeProvider>();
+
+	setupRedisLogging(app);
 
 	// #----- ErrorHandler -----#
 
