@@ -17,7 +17,9 @@ import { membershipRoutes } from "./modules/membership/infrastructure/web/routes
 import { organizationRoutes } from "./modules/organizations/infrastructure/web/routes.ts";
 import { setupRedisLogging } from "./shared/database/redis.ts";
 import { env } from "./shared/env/index.ts";
+import { BaseError } from "./shared/errors/base-error.ts";
 import { healthCheck } from "./shared/monitoring/health-check.ts";
+import { FastifyResponsePresenter } from "./shared/utils/response-handler/fastify-response-presenter.ts";
 
 export async function buildApp() {
 	// #----- App -----#
@@ -56,13 +58,16 @@ export async function buildApp() {
 				.send({ message: "Invalid Data Input", issues: z.treeifyError(error) });
 		}
 
-		console.log(
-			"--------------------------------------------------------------",
-		);
-		console.error(error);
-		console.log(
-			"--------------------------------------------------------------",
-		);
+		if (error instanceof BaseError) {
+			return FastifyResponsePresenter.error(
+				reply,
+				error.statusCode,
+				error.message,
+				error.details || {},
+			);
+		}
+
+		app.log.debug(error);
 
 		return reply.status(500).send({ message: "Internal server error" });
 	});

@@ -7,15 +7,23 @@ export class BadRequestError extends BaseError {
 		this.data = data;
 	}
 }
-export class UnauthorizedUserError extends BaseError {
+export class UnauthorizedError extends BaseError {
 	constructor() {
 		super("Unauthorized.", 401);
 	}
 }
-export class ForbiddenAction extends BaseError {
+export class ForbiddenActionError extends BaseError {
 	public readonly message: string;
 	constructor(message: string = "Forbidden action.") {
 		super(message, 403);
 		this.message = message;
+	}
+}
+
+export class ResourceNotFoundError extends BaseError {
+	public readonly resource: string;
+	constructor(resource: string = "Resource not found.") {
+		super(resource, 404);
+		this.resource = resource;
 	}
 }
