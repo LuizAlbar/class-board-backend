@@ -10,6 +10,14 @@ import {
 	createUserSchema,
 	membershipAuthenticationSchema,
 } from "../../application/validators/user-validators.ts";
+import {
+	errorResponse,
+	successAuthenticate,
+	successAuthOrg,
+	successGetProfile,
+	successRefreshToken,
+	successRegister,
+} from "./swagger-responses.ts";
 
 export async function userRoutes(app: FastifyZodTypedInstance) {
 	app.post(
@@ -19,6 +27,7 @@ export async function userRoutes(app: FastifyZodTypedInstance) {
 				tags: ["auth"],
 				description: "User register",
 				body: createUserSchema,
+				response: { 201: successRegister, 409: errorResponse },
 			},
 		},
 		register,
@@ -31,6 +40,7 @@ export async function userRoutes(app: FastifyZodTypedInstance) {
 				tags: ["auth"],
 				description: "User authenticate",
 				body: authenticateUserSchema,
+				response: { 200: successAuthenticate, 401: errorResponse },
 			},
 		},
 		authenticate,
@@ -43,6 +53,7 @@ export async function userRoutes(app: FastifyZodTypedInstance) {
 			schema: {
 				tags: ["auth"],
 				description: "User get profile",
+				response: { 200: successGetProfile, 401: errorResponse },
 			},
 		},
 		getProfile,
@@ -54,6 +65,7 @@ export async function userRoutes(app: FastifyZodTypedInstance) {
 			schema: {
 				tags: ["auth"],
 				description: "User refresh token",
+				response: { 200: successRefreshToken, 401: errorResponse },
 			},
 		},
 		refreshToken,
@@ -67,6 +79,7 @@ export async function userRoutes(app: FastifyZodTypedInstance) {
 				tags: ["auth"],
 				description: "Create organization session",
 				body: membershipAuthenticationSchema,
+				response: { 200: successAuthOrg, 403: errorResponse },
 			},
 		},
 		createOrganizationSession,
