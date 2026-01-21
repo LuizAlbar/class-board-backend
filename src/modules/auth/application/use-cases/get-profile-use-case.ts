@@ -1,4 +1,4 @@
-import { ResourceNotFoundError } from "../../domain/errors/resource-not-found-error.ts";
+import { ResourceNotFoundError } from "@/shared/errors/http-errors.ts";
 import type { IUsersRepository } from "../../domain/repositories/users-repository.ts";
 
 export class GetProfileUseCase {

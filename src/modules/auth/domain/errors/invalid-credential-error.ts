@@ -1,5 +1,7 @@
-export class InvalidCredentialError extends Error {
+import { BaseError } from "@/shared/errors/base-error.ts";
+
+export class InvalidCredentialError extends BaseError {
 	constructor() {
-		super("Invalid credentials.");
+		super("Invalid credentials.", 401);
 	}
 }

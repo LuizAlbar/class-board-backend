@@ -1,5 +1,5 @@
+import { UnauthorizedError } from "@/shared/errors/http-errors.ts";
 import { InvalidCookieError } from "../../domain/errors/invalid-cookie-error.ts";
-import { UnauthorizedUserError } from "../../domain/errors/unauthorized-user-error.ts";
 import type { IRefreshTokenRepository } from "../../domain/repositories/refresh-tokens-repository.ts";
 import type { IAccessTokenProviderService } from "../../domain/services/access-token-provider-service.ts";
 import type { ITokenSignatureService } from "../../domain/services/token-signature-service.ts";
@@ -23,7 +23,7 @@ export class RefreshAccessTokenUseCase {
 		const refreshToken = await this.refreshTokensRepository.findById(value);
 
 		if (!refreshToken) {
-			throw new UnauthorizedUserError();
+			throw new UnauthorizedError();
 		}
 
 		const userPayload: IAccessTokenPayloadDTO = {

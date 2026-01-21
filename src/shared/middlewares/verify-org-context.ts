@@ -1,8 +1,8 @@
 import type { FastifyReply, FastifyRequest } from "fastify";
 import {
 	BadRequestError,
-	ForbiddenAction,
-	UnauthorizedUserError,
+	ForbiddenActionError,
+	UnauthorizedError,
 } from "../errors/http-errors.ts";
 
 export async function verifyOrgContext(
@@ -18,10 +18,12 @@ export async function verifyOrgContext(
 		}
 
 		if (!userContext) {
-			throw new UnauthorizedUserError();
+			throw new UnauthorizedError();
 		}
 		if (organizationId !== userContext) {
-			throw new ForbiddenAction("You are not allowed in this organization.");
+			throw new ForbiddenActionError(
+				"You are not allowed in this organization.",
+			);
 		}
 	} catch {
 		throw new Error();

@@ -1,7 +1,7 @@
 import { randomUUID } from "node:crypto";
 import { beforeEach, describe, expect, it } from "vitest";
+import { ResourceNotFoundError } from "@/shared/errors/http-errors.ts";
 import { User } from "../../domain/entities/user-entity.ts";
-import { ResourceNotFoundError } from "../../domain/errors/resource-not-found-error.ts";
 import { InMemoryUsersRepository } from "../../domain/repositories/in-memory/in-memory-users-repository.ts";
 import { GetProfileUseCase } from "./get-profile-use-case.ts";
 

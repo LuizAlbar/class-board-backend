@@ -1,10 +1,10 @@
 import type { FastifyReply, FastifyRequest } from "fastify";
-import { FastifyResponsePresenter } from "../utils/response-handler/fastify-response-presenter.ts";
+import { UnauthorizedError } from "../errors/http-errors.ts";
 
-export async function verifyJWT(request: FastifyRequest, reply: FastifyReply) {
+export async function verifyJWT(request: FastifyRequest, _reply: FastifyReply) {
 	try {
 		await request.jwtVerify();
 	} catch (_err) {
-		return FastifyResponsePresenter.error(reply, 401, "Unauthorized");
+		throw new UnauthorizedError();
 	}
 }

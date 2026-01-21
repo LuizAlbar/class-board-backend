@@ -1,5 +1,7 @@
-export class InvalidCookieError extends Error {
+import { BaseError } from "@/shared/errors/base-error.ts";
+
+export class InvalidCookieError extends BaseError {
 	constructor() {
-		super("Invalid cookies.");
+		super("Invalid cookies.", 401);
 	}
 }

@@ -5,7 +5,7 @@ import {
 	Role,
 } from "@/modules/membership/domain/entities/membership-entity.ts";
 import { InMemoryMembershipsRepository } from "@/modules/membership/domain/repositories/in-memory/in-memory-memberships-repository.ts";
-import { ForbiddenOrganizationError } from "../../domain/errors/forbidden-organization-error.ts";
+import { ForbiddenActionError } from "@/shared/errors/http-errors.ts";
 import { CreateOrganizationSessionUseCase } from "./create-organization-session-use-case.ts";
 import { AccessTokenServiceMock } from "./mocks/access-token-service-mock.ts";
 
@@ -50,6 +50,6 @@ describe("Create Organizaztion Session Use Case", () => {
 				userId: membershipData.userId,
 				organizationId: "fake-org-id",
 			}),
-		).rejects.toBeInstanceOf(ForbiddenOrganizationError);
+		).rejects.toBeInstanceOf(ForbiddenActionError);
 	});
 });

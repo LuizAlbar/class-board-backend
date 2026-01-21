@@ -1,5 +1,5 @@
 import type { IMembershipsRepository } from "@/modules/membership/domain/repositories/memberships-repository.ts";
-import { ForbiddenOrganizationError } from "../../domain/errors/forbidden-organization-error.ts";
+import { ForbiddenActionError } from "@/shared/errors/http-errors.ts";
 import type { IAccessTokenProviderService } from "../../domain/services/access-token-provider-service.ts";
 import type { IAuthenticateOrganizationSessionDTO } from "../dtos/authenticate-dto.ts";
 
@@ -18,7 +18,9 @@ export class CreateOrganizationSessionUseCase {
 		);
 
 		if (!membership) {
-			throw new ForbiddenOrganizationError();
+			throw new ForbiddenActionError(
+				"You're not allowed in this organization.",
+			);
 		}
 
 		const token = this.accessTokenService.generateAccessToken({

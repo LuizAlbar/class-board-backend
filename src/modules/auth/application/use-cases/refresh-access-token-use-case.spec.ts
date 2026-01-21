@@ -1,7 +1,7 @@
 import { randomUUID } from "node:crypto";
 import { beforeEach, describe, expect, it } from "vitest";
+import { UnauthorizedError } from "@/shared/errors/http-errors.ts";
 import { User } from "../../domain/entities/user-entity.ts";
-import { UnauthorizedUserError } from "../../domain/errors/unauthorized-user-error.ts";
 import { InMemoryTokensRepository } from "../../domain/repositories/in-memory/in-memory-tokens-repository.ts";
 import { InMemoryUsersRepository } from "../../domain/repositories/in-memory/in-memory-users-repository.ts";
 import { AccessTokenServiceMock } from "./mocks/access-token-service-mock.ts";
@@ -46,7 +46,7 @@ describe("Refresh Token Use Case", () => {
 	it("should not be possible to genereate a new token with an invalid token", async () => {
 		await usersRepository.create(userData);
 		await expect(() => sut.execute("invalid token")).rejects.toBeInstanceOf(
-			UnauthorizedUserError,
+			UnauthorizedError,
 		);
 	});
 });
