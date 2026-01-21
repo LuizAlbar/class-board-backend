@@ -8,8 +8,8 @@ export const successRegister = z.object({
 		id: z.uuid(),
 		name: z.string(),
 		email: z.email(),
-		created_at: z.iso.datetime(),
-		updated_at: z.iso.datetime(),
+		created_at: z.date(),
+		updated_at: z.date(),
 	}),
 });
 
@@ -21,8 +21,8 @@ export const successAuthenticate = z.object({
 		id: z.uuid(),
 		name: z.string(),
 		email: z.email(),
-		created_at: z.iso.datetime(),
-		updated_at: z.iso.datetime(),
+		created_at: z.date(),
+		updated_at: z.date(),
 	}),
 });
 
@@ -34,8 +34,8 @@ export const successGetProfile = z.object({
 		id: z.uuid(),
 		name: z.string(),
 		email: z.email(),
-		created_at: z.iso.datetime(),
-		updated_at: z.iso.datetime(),
+		created_at: z.date(),
+		updated_at: z.date(),
 	}),
 });
 
