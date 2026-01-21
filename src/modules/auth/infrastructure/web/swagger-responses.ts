@@ -52,7 +52,8 @@ export const successAuthOrg = z.object({
 });
 
 export const errorResponse = z.object({
+	success: z.boolean().default(false),
 	code: z.number(),
-	error: z.string(),
-	test: z.string(),
+	message: z.string(),
+	details: z.object().optional(),
 });

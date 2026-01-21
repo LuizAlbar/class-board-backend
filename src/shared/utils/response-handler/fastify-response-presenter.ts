@@ -24,7 +24,7 @@ export class FastifyResponsePresenter {
 		return reply.status(status).send({
 			success: false,
 			code: status,
-			error: message,
+			message: message,
 			details,
 		});
 	}
