@@ -2,15 +2,15 @@ import type { AbilityBuilder } from "@casl/ability";
 
 import type { AppAbility } from "./abilities.ts";
 
-import type { Membership } from "./models/membership-model.ts";
+import type { UserContext } from "./models/user-context-model.ts";
 import type { Role } from "./roles.ts";
 
-type MemberPermissions = (
-	member: Membership,
+type UserPermissions = (
+	userContext: UserContext,
 	buider: AbilityBuilder<AppAbility>,
 ) => void;
 
-export const permissions: Record<Role, MemberPermissions> = {
+export const permissions: Record<Role, UserPermissions> = {
 	COORDENADOR(member, { can, cannot }) {
 		can("manage", "Membership");
 	},

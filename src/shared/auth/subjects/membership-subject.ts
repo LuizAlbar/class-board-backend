@@ -5,7 +5,7 @@ import {
 	membershipTypeName,
 } from "../models/membership-model.ts";
 
-export const memberSubject = z.tuple([
+export const membershipSubject = z.tuple([
 	z.union([
 		z.literal("create"),
 		z.literal("read"),
@@ -15,5 +15,5 @@ export const memberSubject = z.tuple([
 	z.union([membershipTypeName, membershipSchema]),
 ]);
 
-export type UserTypeName = z.infer<typeof membershipTypeName>;
-export type UserSubject = z.infer<typeof memberSubject>;
+export type MembershipTypeName = z.infer<typeof membershipTypeName>;
+export type MembershipSubject = z.infer<typeof membershipSubject>;
