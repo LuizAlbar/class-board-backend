@@ -1,10 +1,10 @@
 import type { UserContext } from "./models/user-context-model.ts";
 import type { Role } from "./roles.ts";
 
-interface IUserContext {
+export interface IUserContext {
 	userId: string;
+	role: Role;
 	orgId?: string;
-	role?: Role;
 }
 
 export class UserContextMapper {
@@ -12,8 +12,8 @@ export class UserContextMapper {
 		return {
 			__typename: "User",
 			userId: userContext.userId,
-			orgId: userContext.orgId,
 			role: userContext.role as Role,
+			orgId: userContext.orgId || "",
 		};
 	}
 }
