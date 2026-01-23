@@ -1,4 +1,3 @@
-import type { Role } from "@/modules/membership/domain/entities/membership-entity.ts";
 import "@fastify/jwt";
 
 declare module "@fastify/jwt" {
@@ -7,7 +6,6 @@ declare module "@fastify/jwt" {
 			sub: {
 				id: string;
 				orgId?: string;
-				role?: Role;
 			};
 		};
 	}

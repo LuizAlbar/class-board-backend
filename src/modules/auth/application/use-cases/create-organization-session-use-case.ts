@@ -27,7 +27,6 @@ export class CreateOrganizationSessionUseCase {
 			sub: {
 				id: membership.userId,
 				orgId: membership.organizationId,
-				role: membership.role,
 			},
 		});
 
