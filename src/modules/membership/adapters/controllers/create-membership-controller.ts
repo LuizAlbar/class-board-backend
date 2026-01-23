@@ -8,18 +8,17 @@ export async function createMembership(
 	request: FastifyRequest,
 	reply: FastifyReply,
 ) {
-	const { role, userId, organizationId } = createMembershipSchema.parse(
-		request.body,
-	);
+	const membershipBody = createMembershipSchema.parse(request.body);
+
+	const user = await request.getCurrentMembership();
 
 	try {
 		const createMembershipUseCase = makeCreateMembershipUseCase();
 
-		const { membership } = await createMembershipUseCase.execute({
-			role,
-			userId,
-			organizationId,
-		});
+		const { membership } = await createMembershipUseCase.execute(
+			membershipBody,
+			user,
+		);
 
 		return FastifyResponsePresenter.success(
 			reply,
