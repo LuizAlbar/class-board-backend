@@ -4,7 +4,7 @@ import { Role } from "../roles.ts";
 export const userContextTypeName = z.literal("User");
 
 export const userContextSchema = z.object({
-	__typename: userContextTypeName,
+	__typename: userContextTypeName.optional(),
 	id: z.string(),
 	orgId: z.string().optional(),
 	role: z.enum(Role).default(Role.VISITANTE),
