@@ -12,15 +12,12 @@ import {
 	type ZodTypeProvider,
 } from "fastify-type-provider-zod";
 import z, { ZodError } from "zod";
-import { prisma } from "@/shared/database/prisma.ts";
 import { userRoutes } from "./modules/auth/infrastructure/web/routes.ts";
 import { membershipRoutes } from "./modules/membership/infrastructure/web/routes.ts";
 import { organizationRoutes } from "./modules/organizations/infrastructure/web/routes.ts";
 import { setupRedisLogging } from "./shared/database/redis.ts";
 import { env } from "./shared/env/index.ts";
 import { BaseError } from "./shared/errors/base-error.ts";
-import { UnauthorizedError } from "./shared/errors/http-errors.ts";
-import { auth } from "./shared/middlewares/auth.ts";
 import { healthCheck } from "./shared/monitoring/health-check.ts";
 import { FastifyResponsePresenter } from "./shared/utils/response-handler/fastify-response-presenter.ts";
 
@@ -51,6 +48,9 @@ export async function buildApp() {
 	}).withTypeProvider<ZodTypeProvider>();
 
 	setupRedisLogging(app);
+
+	app.decorateRequest("getCurrentOrganizationId");
+	app.decorateRequest("getCurrentMembership");
 
 	// #----- ErrorHandler -----#
 
@@ -147,43 +147,6 @@ export async function buildApp() {
 	app.register(healthCheck);
 	app.register(userRoutes);
 
-	app.decorateRequest("getCurrentOrganizationId");
-	app.decorateRequest("getCurrentMembership");
-
-	app.addHook("preHandler", async (request) => {
-		request.getCurrentOrganizationId = () => {
-			const { orgId } = request.user.sub;
-
-			if (!orgId) {
-				throw new Error("No org error");
-			}
-
-			return orgId;
-		};
-
-		request.getCurrentMembership = async () => {
-			const { id: userId } = request.user.sub;
-			const organizationId = request.getCurrentOrganizationId();
-
-			const member = await prisma.membership.findUnique({
-				where: {
-					userId_organizationId: {
-						userId,
-						organizationId,
-					},
-				},
-			});
-
-			if (!member) {
-				throw new UnauthorizedError();
-			}
-
-			return {
-				userId: member.userId,
-				role: member.role,
-			};
-		};
-	});
 	app.register(organizationRoutes);
 	app.register(membershipRoutes);
 
