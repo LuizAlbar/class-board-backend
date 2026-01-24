@@ -49,6 +49,9 @@ export async function buildApp() {
 
 	setupRedisLogging(app);
 
+	app.decorateRequest("getCurrentOrganizationId");
+	app.decorateRequest("getCurrentMembership");
+
 	// #----- ErrorHandler -----#
 
 	app.setErrorHandler((error, _request, reply) => {
@@ -143,6 +146,7 @@ export async function buildApp() {
 
 	app.register(healthCheck);
 	app.register(userRoutes);
+
 	app.register(organizationRoutes);
 	app.register(membershipRoutes);
 

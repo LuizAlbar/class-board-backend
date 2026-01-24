@@ -15,7 +15,7 @@ export class FastifyAuthCookiePresenter {
 			sameSite: "strict",
 		});
 
-		reply.setCookie("refreshToken", refreshToken, {
+		reply.setCookie("__cb.refresh_session", refreshToken, {
 			path: "/",
 			httpOnly: true,
 			secure: env.NODE_ENV === "prod",
@@ -27,7 +27,7 @@ export class FastifyAuthCookiePresenter {
 
 	static clearAuthCookies(reply: FastifyReply) {
 		reply.clearCookie("__cb.auth_session", { path: "/" });
-		reply.clearCookie("refreshToken", { path: "/" });
+		reply.clearCookie("__cb.refresh_session", { path: "/" });
 	}
 
 	static refreshAccessToken(reply: FastifyReply, accessToken: string) {
@@ -41,7 +41,7 @@ export class FastifyAuthCookiePresenter {
 	}
 
 	static organizationAccessToken(reply: FastifyReply, accessToken: string) {
-		reply.setCookie("__cb.org_session", accessToken, {
+		reply.setCookie("__cb.auth_session", accessToken, {
 			path: "/",
 			httpOnly: true,
 			secure: env.NODE_ENV === "prod",

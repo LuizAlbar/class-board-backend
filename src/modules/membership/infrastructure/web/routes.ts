@@ -1,9 +1,11 @@
+import { getUserMembership } from "@/shared/middlewares/get-user-membership.ts";
 import { verifyJWT } from "@/shared/middlewares/verify-jwt.ts";
 import type { FastifyZodTypedInstance } from "@/shared/utils/@types/fastify-zod-type-provider.js";
 import { createMembership } from "../../adapters/controllers/create-membership-controller.ts";
 import { createMembershipSchema } from "../../application/validators/membership-validator.ts";
 
 export async function membershipRoutes(app: FastifyZodTypedInstance) {
+	app.addHook("preHandler", getUserMembership);
 	app.post(
 		"/membership/",
 		{
