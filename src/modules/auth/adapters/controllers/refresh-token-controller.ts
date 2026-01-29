@@ -12,7 +12,7 @@ export async function refreshToken(
 	);
 
 	const token = await refreshAccessTokenUseCase.execute(
-		request.cookies.refreshToken || "",
+		request.cookies["__cb.refresh_session"] || "",
 	);
 
 	FastifyAuthCookiePresenter.refreshAccessToken(reply, token);
