@@ -15,7 +15,7 @@ describe("Get Profile (e2e)", () => {
 	});
 
 	it("should be able to get user profile", async () => {
-		const authResponse = await createAndAuthenticateUser(app);
+		const { authResponse } = await createAndAuthenticateUser(app);
 
 		const cookies = authResponse.get("Set-Cookie") || [];
 
