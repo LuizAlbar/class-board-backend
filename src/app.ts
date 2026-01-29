@@ -126,9 +126,24 @@ export async function buildApp() {
 		openapi: {
 			info: {
 				title: "ClassBoard API Docs",
-				description: "ClassBoard Api",
-				version: "0.1.0",
+				description:
+					"Digital platform focused on the educational environment (SaaS Multi-tenancy)",
+				version: "1.0.0",
+				contact: {
+					name: "LuizAlbar",
+					url: "https://github.com/LuizAlbar",
+				},
 			},
+			servers: [
+				{
+					url: "https://localhost",
+					description: "Development Environment(Nginx Proxy)",
+				},
+				{
+					url: "http://localhost:3000",
+					description: "Direct Access (Backend)",
+				},
+			],
 			components: {
 				securitySchemes: {
 					bearerAuth: { type: "http", scheme: "bearer", bearerFormat: "JWT" },
@@ -140,6 +155,51 @@ export async function buildApp() {
 
 	app.register(fastifySwaggerUi, {
 		routePrefix: "/docs",
+		uiConfig: {
+			docExpansion: "list",
+			deepLinking: true,
+			persistAuthorization: true,
+			filter: true,
+			displayRequestDuration: true,
+		},
+		theme: {
+			title: "ClassBoard API Docs",
+			css: [
+				{
+					filename: "theme.css",
+					content: `
+                .swagger-ui .topbar { 
+                    background: linear-gradient(90deg, #4F3287 0%, #3B5998 50%, #48C9B0 100%) !important; 
+                    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+                }
+                .swagger-ui .btn.execute {
+                    background-color: #48C9B0 !important;
+                    color: #fff !important;
+                    border: none !important;
+                }
+                .swagger-ui .info .title, .swagger-ui .opblock-tag {
+                    color: #4F3287 !important;
+                    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+                }
+                .swagger-ui .opblock-tag {
+                    border-bottom: 2px solid #48C9B0 !important;
+                    padding: 10px 0;
+                }
+                .swagger-ui .auth-wrapper .authorize {
+                    border-color: #48C9B0 !important;
+                    color: #48C9B0 !important;
+                }
+                .swagger-ui .auth-wrapper .authorize svg {
+                    fill: #48C9B0 !important;
+                }
+                .swagger-ui input[type=text], .swagger-ui textarea {
+                    border-radius: 4px !important;
+                    border: 1px solid #3B5998 !important;
+                }
+                `,
+				},
+			],
+		},
 	});
 
 	// #----- Routes -----#
