@@ -35,7 +35,8 @@ export default defineConfig({
 				test: {
 					name: "e2e",
 					include: ["src/modules/**/adapters/controllers/**/*.test.ts"],
-					environment: "node",
+					environment:
+						"./prisma/vitest-environment-prisma/prisma-test-environment.ts",
 				},
 			},
 		],
