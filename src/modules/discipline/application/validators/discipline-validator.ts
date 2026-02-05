@@ -5,7 +5,7 @@ export const createDisciplineSchema = z.object({
 	description: z.string(),
 });
 
-export const updateClassSchema = z.object({
+export const updateDisciplineSchema = z.object({
 	id: z.string(),
 	name: z.string().optional(),
 	description: z.string().optional(),

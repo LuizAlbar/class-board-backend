@@ -2,7 +2,11 @@ import { getUserMembership } from "@/shared/middlewares/get-user-membership.ts";
 import { verifyJWT } from "@/shared/middlewares/verify-jwt.ts";
 import type { FastifyZodTypedInstance } from "@/shared/utils/@types/fastify-zod-type-provider.js";
 import { createDiscipline } from "../../adapters/controllers/create-discipline-controller.ts";
-import { createDisciplineSchema } from "../../application/validators/discipline-validator.ts";
+import { updateDiscipline } from "../../adapters/controllers/update-discipline-controller.ts";
+import {
+	createDisciplineSchema,
+	updateDisciplineSchema,
+} from "../../application/validators/discipline-validator.ts";
 
 export async function disciplineRoutes(app: FastifyZodTypedInstance) {
 	app.addHook("preHandler", getUserMembership);
@@ -17,5 +21,18 @@ export async function disciplineRoutes(app: FastifyZodTypedInstance) {
 			},
 		},
 		createDiscipline,
+	);
+
+	app.patch(
+		"/discipline/",
+		{
+			preHandler: [verifyJWT],
+			schema: {
+				tags: ["discipline"],
+				description: "Update discipline",
+				body: updateDisciplineSchema,
+			},
+		},
+		updateDiscipline,
 	);
 }
