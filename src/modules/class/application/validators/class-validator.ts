@@ -7,3 +7,10 @@ export const createClassSchema = z.object({
 	period: z.enum(Period),
 	organizationId: z.string(),
 });
+
+export const updateClassSchema = z.object({
+	id: z.string(),
+	name: z.string().optional(),
+	year: z.number().optional(),
+	period: z.enum(Period).optional(),
+});

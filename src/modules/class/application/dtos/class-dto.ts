@@ -18,6 +18,7 @@ export interface ICreateClassDTO {
 }
 
 export interface IUpdateClassDTO {
+	id: string;
 	name?: string;
 	year?: number;
 	period?: Period;
