@@ -18,3 +18,10 @@ export interface IUpdateDisciplineDTO {
 export interface IDeleteDisciplineDTO {
 	id: string;
 }
+
+export interface IQueryDisciplineDTO {
+	name?: string;
+	description?: string;
+	page: number;
+	limit: number;
+}

@@ -32,4 +32,8 @@ export class DisciplineMapper {
 	static manyToDomain(raw: PrismaDiscipline[]): Discipline[] {
 		return raw.map((r) => DisciplineMapper.toDomain(r));
 	}
+
+	static manyToDTO(disciplines: Discipline[]): IDisciplineDTO[] {
+		return disciplines.map((d) => DisciplineMapper.toDTO(d));
+	}
 }
