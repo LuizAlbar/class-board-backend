@@ -14,3 +14,7 @@ export interface IUpdateDisciplineDTO {
 	name?: string;
 	description?: string;
 }
+
+export interface IDeleteDisciplineDTO {
+	id: string;
+}

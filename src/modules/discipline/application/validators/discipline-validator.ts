@@ -10,3 +10,7 @@ export const updateDisciplineSchema = z.object({
 	name: z.string().optional(),
 	description: z.string().optional(),
 });
+
+export const deleteDisciplineSchema = z.object({
+	id: z.string(),
+});
