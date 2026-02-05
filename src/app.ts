@@ -13,6 +13,7 @@ import {
 } from "fastify-type-provider-zod";
 import z, { ZodError } from "zod";
 import { userRoutes } from "./modules/auth/infrastructure/web/routes.ts";
+import { classRoutes } from "./modules/class/infrastructure/web/route.ts";
 import { membershipRoutes } from "./modules/membership/infrastructure/web/routes.ts";
 import { organizationRoutes } from "./modules/organizations/infrastructure/web/routes.ts";
 import { setupRedisLogging } from "./shared/database/redis.ts";
@@ -209,6 +210,7 @@ export async function buildApp() {
 
 	app.register(organizationRoutes);
 	app.register(membershipRoutes);
+	app.register(classRoutes);
 
 	return app;
 }
