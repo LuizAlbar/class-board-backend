@@ -25,6 +25,7 @@ const professorData = {
 const classData: ICreateClassDTO = {
 	name: "Turma 1",
 	period: Period.MANHA,
+	organizationId: "12345",
 	year: 2023,
 };
 describe("Create Membership Use Case", () => {

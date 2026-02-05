@@ -14,6 +14,7 @@ export class CreateClassUseCase {
 			id: randomUUID(),
 			name: dto.name,
 			period: dto.period,
+			organizationId: dto.organizationId,
 			year: dto.year,
 			createdAt: new Date(),
 			updatedAt: new Date(),

@@ -9,6 +9,7 @@ export interface IClassProps {
 	name: string;
 	year: number;
 	period: Period;
+	organizationId: string;
 	createdAt: Date;
 	updatedAt: Date;
 }
@@ -32,6 +33,9 @@ export class Class {
 	}
 	get period() {
 		return this.props.period;
+	}
+	get organizationId() {
+		return this.props.organizationId;
 	}
 	get createdAt() {
 		return this.props.createdAt;
