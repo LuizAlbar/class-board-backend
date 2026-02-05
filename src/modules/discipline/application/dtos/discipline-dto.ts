@@ -10,6 +10,7 @@ export interface ICreateDisciplineDTO {
 }
 
 export interface IUpdateDisciplineDTO {
+	id: string;
 	name?: string;
 	description?: string;
 }
