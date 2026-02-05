@@ -14,3 +14,10 @@ export const updateDisciplineSchema = z.object({
 export const deleteDisciplineSchema = z.object({
 	id: z.string(),
 });
+
+export const queryDisciplineSchema = z.object({
+	name: z.string().optional(),
+	description: z.string().optional(),
+	limit: z.number(),
+	page: z.number(),
+});
