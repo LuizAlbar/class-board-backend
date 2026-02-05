@@ -7,7 +7,7 @@ import type { IClassesRepository } from "../../domain/repositories/class-reposit
 import type { ICreateClassDTO } from "../dtos/class-dto.ts";
 
 export class CreateClassUseCase {
-	constructor(private membershipRepository: IClassesRepository) {}
+	constructor(private classesRepository: IClassesRepository) {}
 
 	async execute(dto: ICreateClassDTO, userContext: IUserContext) {
 		const newClass = new Class({
@@ -28,7 +28,7 @@ export class CreateClassUseCase {
 			);
 		}
 
-		const classItem = await this.membershipRepository.create(newClass);
+		const classItem = await this.classesRepository.create(newClass);
 
 		return { classItem };
 	}

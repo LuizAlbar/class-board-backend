@@ -5,10 +5,10 @@ import { ForbiddenActionError } from "@/shared/errors/http-errors.ts";
 import { Period } from "../../domain/entities/class-entity.ts";
 import { InMemoryClassesRepository } from "../../domain/repositories/in-memory/in-memory-classes-repository.ts";
 import type { ICreateClassDTO } from "../dtos/class-dto.ts";
-import { CreateClassUseCase } from "./create-class-use-case.ts";
+import { UpdateClassUseCase } from "./update-class-use-case.ts";
 
 let classesRepository: InMemoryClassesRepository;
-let sut: CreateClassUseCase;
+let sut: UpdateClassUseCase;
 
 const coordinatorData = {
 	role: Role.COORDENADOR,
@@ -31,23 +31,32 @@ const classData: ICreateClassDTO = {
 describe("Create Membership Use Case", () => {
 	beforeEach(() => {
 		classesRepository = new InMemoryClassesRepository();
-		sut = new CreateClassUseCase(classesRepository);
+		sut = new UpdateClassUseCase(classesRepository);
 	});
 
-	it("should be able for a coordinator to create a class", async () => {
-		const { classItem } = await sut.execute(
-			classData,
+	it("should be able for a coordinator to update a class", async () => {
+		const createdClass = await classesRepository.create(classData);
+
+		const updatedClass = await sut.execute(
+			{
+				id: createdClass.id,
+				name: "Turma 2",
+			},
 			UserContextMapper.toModel(coordinatorData),
 		);
 
-		expect(classItem.name).toEqual(classData.name);
-		expect(classItem.id).toEqual(expect.any(String));
+		const getUpdatedClass = await classesRepository.findById(createdClass.id);
+
+		expect(getUpdatedClass?.name).toEqual(updatedClass.classItem.name);
 	});
 
-	it("should not be able for a non-coordinator to create a class", async () => {
+	it("should not be able for a non-coordinator to update a class", async () => {
 		await expect(
 			async () =>
-				await sut.execute(classData, UserContextMapper.toModel(professorData)),
+				await sut.execute(
+					{ id: "123", name: "Turma 2" },
+					UserContextMapper.toModel(professorData),
+				),
 		).rejects.toBeInstanceOf(ForbiddenActionError);
 	});
 });
