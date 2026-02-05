@@ -18,6 +18,6 @@ export const deleteDisciplineSchema = z.object({
 export const queryDisciplineSchema = z.object({
 	name: z.string().optional(),
 	description: z.string().optional(),
-	limit: z.number(),
-	page: z.number(),
+	limit: z.coerce.number(),
+	page: z.coerce.number(),
 });

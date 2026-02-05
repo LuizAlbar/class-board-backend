@@ -8,7 +8,7 @@ export async function getDisciplines(
 	request: FastifyRequest,
 	reply: FastifyReply,
 ) {
-	const queryDisciplineBody = queryDisciplineSchema.parse(request.body);
+	const queryDisciplineBody = queryDisciplineSchema.parse(request.query);
 
 	const user = await request.getCurrentMembership();
 
@@ -22,7 +22,7 @@ export async function getDisciplines(
 	return FastifyResponsePresenter.success(
 		reply,
 		200,
-		"Discipline found successfully",
+		"Disciplines found successfully",
 		DisciplineMapper.manyToDTO(disciplinesItems),
 	);
 }
