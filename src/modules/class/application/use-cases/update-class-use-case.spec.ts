@@ -28,7 +28,7 @@ const classData: ICreateClassDTO = {
 	organizationId: "12345",
 	year: 2023,
 };
-describe("Create Membership Use Case", () => {
+describe("Update Class Use Case", () => {
 	beforeEach(() => {
 		classesRepository = new InMemoryClassesRepository();
 		sut = new UpdateClassUseCase(classesRepository);

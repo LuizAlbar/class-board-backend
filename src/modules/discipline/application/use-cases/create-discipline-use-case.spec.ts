@@ -15,7 +15,7 @@ const disciplineData: ICreateDisciplineDTO = {
 	description: "Programação Orientada a Objetos",
 };
 
-describe("Create Membership Use Case", () => {
+describe("Create Discipline Use Case", () => {
 	beforeEach(() => {
 		disciplinesRepository = new InMemoryDisciplinesRepository();
 		sut = new CreateDisciplineUseCase(disciplinesRepository);

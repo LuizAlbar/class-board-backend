@@ -21,7 +21,7 @@ export async function updateDiscipline(
 
 	return FastifyResponsePresenter.success(
 		reply,
-		201,
+		200,
 		"Discipline updated successfully",
 		DisciplineMapper.toDTO(disciplineItem),
 	);
