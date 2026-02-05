@@ -1,6 +1,7 @@
 import { randomUUID } from "node:crypto";
 import type {
 	ICreateDisciplineDTO,
+	IQueryDisciplineDTO,
 	IUpdateDisciplineDTO,
 } from "@/modules/discipline/application/dtos/discipline-dto.ts";
 import { Discipline } from "../../entities/discipline-entity.ts";
@@ -15,11 +16,25 @@ export class InMemoryDisciplinesRepository implements IDisciplinesRepository {
 
 		return discipline;
 	}
-	async findByName(query: string) {
-		const discipline = this.items.filter((item) => item.name === query);
+	async findDisciplines(query: IQueryDisciplineDTO) {
+		const pageSize = query.limit;
+		const startIndex = (query.page - 1) * pageSize;
+		const endIndex = startIndex + pageSize;
 
-		if (!discipline) return null;
-		return discipline;
+		const disciplines = this.items
+			.filter((item) => {
+				if (query.name) {
+					item.name.includes(query.name);
+				}
+				if (query.description) {
+					item.description.includes(query.description);
+				}
+				return true;
+			})
+			.slice(startIndex, endIndex);
+
+		if (!disciplines) return null;
+		return disciplines;
 	}
 	async create(data: ICreateDisciplineDTO) {
 		const newDiscipline = new Discipline({

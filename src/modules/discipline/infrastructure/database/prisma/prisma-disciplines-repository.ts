@@ -1,5 +1,6 @@
 import type {
 	ICreateDisciplineDTO,
+	IQueryDisciplineDTO,
 	IUpdateDisciplineDTO,
 } from "@/modules/discipline/application/dtos/discipline-dto.ts";
 import { DisciplineMapper } from "@/modules/discipline/application/mappers/discipline-mapper.ts";
@@ -18,13 +19,20 @@ export class PrismaDisciplinesRepository implements IDisciplinesRepository {
 
 		return DisciplineMapper.toDomain(discipline);
 	}
-	async findByName(query: string) {
+	async findDisciplines(query: IQueryDisciplineDTO) {
+		const take = query.limit;
+		const skip = (query.page - 1) * take;
 		const disciplines = await prisma.discipline.findMany({
 			where: {
 				name: {
-					contains: query,
+					contains: query.name,
 					mode: "insensitive",
 				},
+			},
+			take,
+			skip,
+			orderBy: {
+				name: "asc",
 			},
 		});
 
