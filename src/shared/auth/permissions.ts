@@ -15,8 +15,19 @@ export const permissions: Record<Role, UserPermissions> = {
 		can("manage", "all");
 		cannot("manage", "Membership", { userId: member.userId });
 	},
-	PROFESSOR(_member, { can, cannot }) {},
-	RESPONSAVEL(_member, { can, cannot }) {},
-	ESTUDANTE(_member, { can, cannot }) {},
-	VISITANTE(_member, { can, cannot }) {},
+	PROFESSOR(_member, { can, cannot }) {
+		can("read", "Class");
+		can("read", "Discipline");
+	},
+	RESPONSAVEL(_member, { can, cannot }) {
+		can("read", "Class");
+		can("read", "Discipline");
+	},
+	ESTUDANTE(_member, { can, cannot }) {
+		can("read", "Class");
+		can("read", "Discipline");
+	},
+	VISITANTE(_member, { can, cannot }) {
+		cannot("manage", "all");
+	},
 };

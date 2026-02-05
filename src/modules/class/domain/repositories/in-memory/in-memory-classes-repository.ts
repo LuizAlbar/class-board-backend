@@ -21,6 +21,7 @@ export class InMemoryClassesRepository implements IClassesRepository {
 			id: randomUUID(),
 			name: data.name,
 			period: data.period,
+			organizationId: data.organizationId,
 			year: data.year,
 			createdAt: new Date(),
 			updatedAt: new Date(),

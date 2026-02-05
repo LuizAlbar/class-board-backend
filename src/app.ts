@@ -14,6 +14,7 @@ import {
 import z, { ZodError } from "zod";
 import { userRoutes } from "./modules/auth/infrastructure/web/routes.ts";
 import { classRoutes } from "./modules/class/infrastructure/web/route.ts";
+import { disciplineRoutes } from "./modules/discipline/infrastructure/web/routes.ts";
 import { membershipRoutes } from "./modules/membership/infrastructure/web/routes.ts";
 import { organizationRoutes } from "./modules/organizations/infrastructure/web/routes.ts";
 import { setupRedisLogging } from "./shared/database/redis.ts";
@@ -211,6 +212,7 @@ export async function buildApp() {
 	app.register(organizationRoutes);
 	app.register(membershipRoutes);
 	app.register(classRoutes);
+	app.register(disciplineRoutes);
 
 	return app;
 }
