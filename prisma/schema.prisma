@@ -49,7 +49,11 @@ model Organization {
   slug       String  @unique
   created_at DateTime @default(now())
 
-  members    Membership[]
+  members       Membership[]
+  classes       Class[]
+  teachers      Teacher[]
+  students      Student[]
+  announcements Announcement[]
 
   @@map("organizations")
 }
@@ -80,15 +84,24 @@ model Class {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
+  organization    Organization @relation(fields: [organizationId], references: [id])
+  organizationId  String
+
   assignments   TeacherAssignment[]
   enrollments      Enrollment[]
   announcements Announcement[]
+  @@map("classes")
 }
 
 model Teacher {
   id          String @id @default(uuid())
   userId      String @unique
   assignments TeacherAssignment[]
+
+  organization    Organization @relation(fields: [organizationId], references: [id])
+  organizationId  String
+
+  @@map("teachers")
 }
 
 model Student {
@@ -99,8 +112,12 @@ model Student {
   ra          String
   dateOfBirth DateTime
 
+  organization    Organization @relation(fields: [organizationId], references: [id])
+  organizationId  String
+
   enrollments Enrollment[]
 
+  @@map("students")
 }
 
 model Discipline {
@@ -110,6 +127,8 @@ model Discipline {
   description String
 
   assignments TeacherAssignment[]
+
+  @@map("disciplines")
 }
 
 model TeacherAssignment {
@@ -126,6 +145,7 @@ model TeacherAssignment {
   discipline Discipline @relation(fields: [disciplineId], references: [id])
 
   @@unique([classId, teacherId, disciplineId])
+  @@map("teacher_assignments")
 }
 
 model Enrollment {
@@ -141,6 +161,7 @@ model Enrollment {
   student        Student @relation(fields: [studentId], references: [id])
   class          Class   @relation(fields: [classId], references: [id])
   @@unique([studentId, classId])
+  @@map("enrollments")
 }
 
 model Announcement {
@@ -154,6 +175,11 @@ model Announcement {
 
   authorId    String
 
+  organization    Organization @relation(fields: [organizationId], references: [id])
+  organizationId  String
+
   classId     String?
   class       Class?   @relation(fields: [classId], references: [id])
+
+  @@map("announcements")
 }
