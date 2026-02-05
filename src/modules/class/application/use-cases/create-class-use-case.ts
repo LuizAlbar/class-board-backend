@@ -22,7 +22,7 @@ export class CreateClassUseCase {
 
 		const context = UserContextMapper.toModel(userContext);
 		const { cannot } = getUserPermissions(context.userId, context.role);
-		if (cannot("create", "Membership")) {
+		if (cannot("create", "Class")) {
 			throw new ForbiddenActionError(
 				"You don't have permission to create classes",
 			);

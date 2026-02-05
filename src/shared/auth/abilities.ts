@@ -7,6 +7,7 @@ import {
 import z from "zod";
 import type { UserContext } from "./models/user-context-model.ts";
 import { permissions } from "./permissions.ts";
+import { classSubject } from "./subjects/class-subject.ts";
 import { membershipSubject } from "./subjects/membership-subject.ts";
 import { organizationSubject } from "./subjects/organization-subject.ts";
 import { userContextSubject } from "./subjects/user-context-subject.ts";
@@ -15,6 +16,7 @@ const appAbilities = z.union([
 	organizationSubject,
 	membershipSubject,
 	userContextSubject,
+	classSubject,
 	z.tuple([z.literal("manage"), z.literal("all")]),
 ]);
 

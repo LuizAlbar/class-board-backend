@@ -12,10 +12,11 @@ type UserPermissions = (
 
 export const permissions: Record<Role, UserPermissions> = {
 	COORDENADOR(member, { can, cannot }) {
-		can("manage", "Membership");
+		can("manage", "all");
+		cannot("manage", "Membership", { userId: member.userId });
 	},
-	PROFESSOR(member, { can, cannot }) {},
-	RESPONSAVEL(member, { can, cannot }) {},
-	ESTUDANTE(member, { can, cannot }) {},
-	VISITANTE(member, { can, cannot }) {},
+	PROFESSOR(_member, { can, cannot }) {},
+	RESPONSAVEL(_member, { can, cannot }) {},
+	ESTUDANTE(_member, { can, cannot }) {},
+	VISITANTE(_member, { can, cannot }) {},
 };
