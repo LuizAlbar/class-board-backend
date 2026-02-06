@@ -30,7 +30,7 @@ enum EnrollmentStatus {
 }
 
 model User {
-  id         String   @id @default(uuid())
+  id String @id @default(uuid())
 
   name       String
   email      String   @unique
@@ -39,14 +39,15 @@ model User {
   updated_at DateTime @updatedAt
 
   memberships Membership[]
+
   @@map("users")
 }
 
 model Organization {
-  id         String   @id @default(uuid())
+  id String @id @default(uuid())
 
   name       String
-  slug       String  @unique
+  slug       String   @unique
   created_at DateTime @default(now())
 
   members       Membership[]
@@ -54,66 +55,68 @@ model Organization {
   teachers      Teacher[]
   students      Student[]
   announcements Announcement[]
+  disciplines   Discipline[]
 
   @@map("organizations")
 }
 
 model Membership {
-  id              String @id @default(uuid())
+  id String @id @default(uuid())
 
-  role            Role  @default(VISITANTE)
-  user            User  @relation(fields: [userId], references: [id])
-  userId          String
+  role   Role   @default(VISITANTE)
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
 
-  organization    Organization @relation(fields: [organizationId], references: [id])
-  organizationId  String
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  organizationId String
 
-  created_at      DateTime @default(now())
-  updated_at      DateTime @updatedAt
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 
   @@unique([userId, organizationId])
   @@map("memberships")
 }
 
 model Class {
-  id          String @id @default(uuid())
+  id String @id @default(uuid())
 
-  name        String
-  year        Int
-  period      Period
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  name      String
+  year      Int
+  period    Period
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  organization    Organization @relation(fields: [organizationId], references: [id])
-  organizationId  String
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  organizationId String
 
   assignments   TeacherAssignment[]
-  enrollments      Enrollment[]
+  enrollments   Enrollment[]
   announcements Announcement[]
+
   @@map("classes")
 }
 
 model Teacher {
-  id          String @id @default(uuid())
-  userId      String @unique
+  id          String              @id @default(uuid())
+  userId      String              @unique
   assignments TeacherAssignment[]
 
-  organization    Organization @relation(fields: [organizationId], references: [id])
-  organizationId  String
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  organizationId String
 
   @@map("teachers")
 }
 
 model Student {
-  id          String @id @default(uuid())
+  id String @id @default(uuid())
 
-  userId      String @unique
+  userId String @unique
 
   ra          String
   dateOfBirth DateTime
 
-  organization    Organization @relation(fields: [organizationId], references: [id])
-  organizationId  String
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  organizationId String
 
   enrollments Enrollment[]
 
@@ -121,27 +124,30 @@ model Student {
 }
 
 model Discipline {
-  id          String @id @default(uuid())
+  id String @id @default(uuid())
 
   name        String
   description String
 
   assignments TeacherAssignment[]
 
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  organizationId String
+
   @@map("disciplines")
 }
 
 model TeacherAssignment {
-  id           String @id @default(uuid())
+  id String @id @default(uuid())
 
-  worload      Int
+  workload Int
 
   classId      String
   teacherId    String
   disciplineId String
 
-  class     Class @relation(fields: [classId], references: [id])
-  teacher   Teacher @relation(fields: [teacherId], references: [id])
+  class      Class      @relation(fields: [classId], references: [id])
+  teacher    Teacher    @relation(fields: [teacherId], references: [id])
   discipline Discipline @relation(fields: [disciplineId], references: [id])
 
   @@unique([classId, teacherId, disciplineId])
@@ -149,37 +155,38 @@ model TeacherAssignment {
 }
 
 model Enrollment {
-  id             String @id @default(uuid())
+  id String @id @default(uuid())
 
   year           Int
   status         EnrollmentStatus
   enrollmentDate DateTime
 
-  studentId      String
-  classId        String
+  studentId String
+  classId   String
 
-  student        Student @relation(fields: [studentId], references: [id])
-  class          Class   @relation(fields: [classId], references: [id])
+  student Student @relation(fields: [studentId], references: [id])
+  class   Class   @relation(fields: [classId], references: [id])
+
   @@unique([studentId, classId])
   @@map("enrollments")
 }
 
 model Announcement {
-  id          String @id @default(uuid())
+  id String @id @default(uuid())
 
-  title       String
-  content     String
-  createdAt   DateTime @default(now())
-  priority    String
-  expiresAt   DateTime
+  title     String
+  content   String
+  createdAt DateTime @default(now())
+  priority  String
+  expiresAt DateTime
 
-  authorId    String
+  authorId String
 
-  organization    Organization @relation(fields: [organizationId], references: [id])
-  organizationId  String
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  organizationId String
 
-  classId     String?
-  class       Class?   @relation(fields: [classId], references: [id])
+  classId String?
+  class   Class?  @relation(fields: [classId], references: [id])
 
   @@map("announcements")
 }
