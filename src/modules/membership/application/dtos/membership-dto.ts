@@ -4,6 +4,8 @@ export interface IMembershipDTO {
 	id: string;
 	role: Role;
 	userId: string;
+	teacherProfile?: string;
+	studentProfile?: string;
 	organizationId: string;
 	created_at: Date;
 	updated_at: Date;

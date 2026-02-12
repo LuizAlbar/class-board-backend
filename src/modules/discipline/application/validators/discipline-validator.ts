@@ -3,6 +3,7 @@ import { z } from "zod";
 export const createDisciplineSchema = z.object({
 	name: z.string(),
 	description: z.string(),
+	organizationId: z.string(),
 });
 
 export const updateDisciplineSchema = z.object({
