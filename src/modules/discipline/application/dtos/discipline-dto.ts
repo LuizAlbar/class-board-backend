@@ -2,11 +2,13 @@ export interface IDisciplineDTO {
 	id: string;
 	name: string;
 	description: string;
+	organizationId: string;
 }
 
 export interface ICreateDisciplineDTO {
 	name: string;
 	description: string;
+	organizationId: string;
 }
 
 export interface IUpdateDisciplineDTO {

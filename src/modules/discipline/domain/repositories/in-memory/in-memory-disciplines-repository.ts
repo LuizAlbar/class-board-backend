@@ -41,6 +41,7 @@ export class InMemoryDisciplinesRepository implements IDisciplinesRepository {
 			id: randomUUID(),
 			name: data.name,
 			description: data.description,
+			organizationId: data.organizationId,
 		});
 
 		this.items.push(newDiscipline);

@@ -16,6 +16,7 @@ let sut: DeleteDisciplineUseCase;
 const disciplineData: ICreateDisciplineDTO = {
 	name: "POO",
 	description: "Programação Orientada a Objetos",
+	organizationId: "123",
 };
 describe("Delete Discipline Use Case", () => {
 	beforeEach(() => {

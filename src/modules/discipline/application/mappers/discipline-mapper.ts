@@ -11,6 +11,7 @@ export class DisciplineMapper {
 			id: raw.id,
 			name: raw.name,
 			description: raw.description,
+			organizationId: raw.organizationId,
 		});
 	}
 
@@ -18,6 +19,7 @@ export class DisciplineMapper {
 		return {
 			name: data.name,
 			description: data.description,
+			organizationId: data.organizationId,
 		};
 	}
 
@@ -26,6 +28,7 @@ export class DisciplineMapper {
 			id: discipline.id,
 			name: discipline.name,
 			description: discipline.description,
+			organizationId: discipline.organizationId,
 		};
 	}
 

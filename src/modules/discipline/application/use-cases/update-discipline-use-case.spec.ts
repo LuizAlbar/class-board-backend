@@ -13,6 +13,7 @@ let sut: UpdateDisciplineUseCase;
 const disciplineData: ICreateDisciplineDTO = {
 	name: "POO",
 	description: "Programação Orientada a Objetos",
+	organizationId: "123",
 };
 describe("Update Discipline Use Case", () => {
 	beforeEach(() => {
