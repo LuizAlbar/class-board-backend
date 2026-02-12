@@ -4,6 +4,7 @@ import { Teacher } from "../../domain/entities/teacher-entity.ts";
 import type {
 	ICreateTeacherDTO,
 	IQueryTeacherResultDTO,
+	IQueryTeacherResultDTOV2,
 	ITeacherDTO,
 } from "../dtos/teacher-dto.ts";
 
@@ -48,5 +49,19 @@ export class TeacherMapper {
 				limit: 10,
 			};
 		});
+	}
+
+	static toManyQueryDTOV2(teacherQuery: any[]): IQueryTeacherResultDTOV2[] {
+		return teacherQuery.map((teacher) => ({
+			id: teacher.id,
+			userId: teacher.userId,
+			organizationId: teacher.organizationId,
+			membership: {
+				...teacher.membership,
+				user: {
+					...teacher.membership.user,
+				},
+			},
+		}));
 	}
 }

@@ -1,3 +1,6 @@
+import type { IUserDto } from "@/modules/auth/application/dtos/user-dto.ts";
+import type { IMembershipDTO } from "@/modules/membership/application/dtos/membership-dto.ts";
+
 export interface ITeacherDTO {
 	id: string;
 	userId: string;
@@ -28,4 +31,13 @@ export interface IQueryTeacherResultDTO {
 	email?: string;
 	page: number;
 	limit: number;
+}
+
+export interface IQueryTeacherResultDTOV2 {
+	id: string;
+	userId: string;
+	organizationId: string;
+	membership: IMembershipDTO & {
+		user: IUserDto;
+	};
 }
