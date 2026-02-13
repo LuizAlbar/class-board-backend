@@ -1,4 +1,4 @@
-import "dotenv/config";
+import { config } from "dotenv";
 import { z } from "zod";
 
 const envSchema = z.object({
@@ -9,15 +9,16 @@ const envSchema = z.object({
 	REDIS_URL: z.string(),
 });
 
-const _env = envSchema.safeParse(process.env);
+const nodeEnv = process.env.NODE_ENV || "dev";
+const envPath = nodeEnv === "prod" ? ".env" : ".env.development.local";
 
-if (_env.success === false) {
-	console.error(
-		"❌ Invalid environment variables: ",
-		z.treeifyError(_env.error),
-	);
+const { error, data } = envSchema.safeParse(
+	config({ path: envPath, override: true, encoding: "utf-8" }).parsed,
+);
 
+if (error) {
+	console.error("❌ Invalid environment variables:", z.treeifyError(error));
 	throw new Error("Invalid environment variables");
 }
 
-export const env = _env.data;
+export const env = data;
