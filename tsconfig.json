@@ -6,6 +6,9 @@
 		"lib": ["es2024", "ESNext.Array", "ESNext.Collection", "ESNext.Iterator"],
 		"module": "nodenext",
 		"target": "es2022",
+		"declaration": true,
+		"outDir": "dist",
+		"sourceMap": true,
 
 		"strict": true,
 		"esModuleInterop": true,
@@ -19,5 +22,6 @@
 		"paths": {
 			"@/*": ["./src/*"]
 		}
-	}
+	},
+	"include": ["./src"]
 }
