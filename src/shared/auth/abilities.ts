@@ -11,6 +11,7 @@ import { classSubject } from "./subjects/class-subject.ts";
 import { disciplineSubject } from "./subjects/discipline-subject.ts";
 import { membershipSubject } from "./subjects/membership-subject.ts";
 import { organizationSubject } from "./subjects/organization-subject.ts";
+import { teacherAssignmentSubject } from "./subjects/teacher-assignment-subject.ts";
 import { teacherSubject } from "./subjects/teacher-subject.ts";
 import { userContextSubject } from "./subjects/user-context-subject.ts";
 
@@ -21,6 +22,7 @@ const appAbilities = z.union([
 	classSubject,
 	disciplineSubject,
 	teacherSubject,
+	teacherAssignmentSubject,
 	z.tuple([z.literal("manage"), z.literal("all")]),
 ]);
 
