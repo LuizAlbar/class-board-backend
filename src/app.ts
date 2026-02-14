@@ -18,6 +18,7 @@ import { disciplineRoutes } from "./modules/discipline/infrastructure/web/routes
 import { membershipRoutes } from "./modules/membership/infrastructure/web/routes.ts";
 import { organizationRoutes } from "./modules/organizations/infrastructure/web/routes.ts";
 import { teacherRoutes } from "./modules/teacher/infrastructure/web/routes.ts";
+import { teacherAssignmentRoutes } from "./modules/teacher-assignment/infrastructure/web/route.ts";
 import { setupRedisLogging } from "./shared/database/redis.ts";
 import { env } from "./shared/env/index.ts";
 import { BaseError } from "./shared/errors/base-error.ts";
@@ -215,6 +216,7 @@ export async function buildApp() {
 	app.register(classRoutes);
 	app.register(disciplineRoutes);
 	app.register(teacherRoutes);
+	app.register(teacherAssignmentRoutes);
 
 	return app;
 }
