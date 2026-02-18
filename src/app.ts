@@ -39,15 +39,18 @@ export async function buildApp() {
 					};
 				},
 			},
-			transport: {
-				target: "pino-pretty",
-				options: {
-					colorize: true,
-					translateTime: "HH:MM:ss Z",
-					ignore: "pid,hostname",
-					include: "level,time,msg,query,params",
-				},
-			},
+			transport:
+				process.env.NODE_ENV === "dev"
+					? {
+							target: "pino-pretty",
+							options: {
+								colorize: true,
+								translateTime: "HH:MM:ss Z",
+								ignore: "pid,hostname",
+								include: "level,time,msg,query,params",
+							},
+						}
+					: undefined,
 		},
 	}).withTypeProvider<ZodTypeProvider>();
 
