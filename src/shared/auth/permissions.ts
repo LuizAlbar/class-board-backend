@@ -19,15 +19,18 @@ export const permissions: Record<Role, UserPermissions> = {
 		can("read", "Class");
 		can("read", "Discipline");
 		can("read", "TeacherAssignment");
+		can("read", "Student");
 	},
 	RESPONSAVEL(_member, { can, cannot }) {
 		can("read", "Class");
 		can("read", "Discipline");
+		can("read", "Student");
 	},
 	ESTUDANTE(_member, { can, cannot }) {
 		can("read", "Class");
 		can("read", "Discipline");
 		can("read", "TeacherAssignment");
+		can("read", "Student");
 	},
 	VISITANTE(_member, { can, cannot }) {
 		cannot("manage", "all");
