@@ -9,6 +9,7 @@ import type { UserContext } from "./models/user-context-model.ts";
 import { permissions } from "./permissions.ts";
 import { classSubject } from "./subjects/class-subject.ts";
 import { disciplineSubject } from "./subjects/discipline-subject.ts";
+import { enrollmentSubject } from "./subjects/enrollment-subject.ts";
 import { membershipSubject } from "./subjects/membership-subject.ts";
 import { organizationSubject } from "./subjects/organization-subject.ts";
 import { studentSubject } from "./subjects/student-subject.ts";
@@ -25,6 +26,7 @@ const appAbilities = z.union([
 	teacherSubject,
 	teacherAssignmentSubject,
 	studentSubject,
+	enrollmentSubject,
 	z.tuple([z.literal("manage"), z.literal("all")]),
 ]);
 
